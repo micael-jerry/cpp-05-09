@@ -1,4 +1,4 @@
-#include <Bureaucrat.hpp>
+#include "../include/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
 
@@ -46,4 +46,15 @@ void Bureaucrat::decrementGrade(void)
 	if ((this->_grade + 1) > BUREAUCRAT_MIN_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade++;
+}
+
+std::ostream& operator<<(std::ostream& os, Bureaucrat const &bureaucrat) 
+{
+	os 
+		<< bureaucrat.getName()
+		<< ",  bureaucrat grade "
+		<< bureaucrat.getGrade()
+		<< "."
+		<< std::endl;
+	return (os);
 }

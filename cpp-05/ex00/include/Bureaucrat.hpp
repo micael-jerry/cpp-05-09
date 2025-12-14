@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:06:39 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/13 05:47:54 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/14 05:09:01 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define BUREAUCRAT_MIN_GRADE 150
 
 #include <string>
+#include <iostream>
 
 class Bureaucrat
 {
@@ -57,5 +58,7 @@ public:
 		};
 	};
 };
+
+std::ostream& operator<<(std::ostream& os, Bureaucrat const &obj);
 
 #endif
