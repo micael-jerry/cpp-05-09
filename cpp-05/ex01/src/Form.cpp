@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 10:44:22 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/14 14:57:53 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ Form &Form::operator=(Form const &src) {
 	this->_isSigned = src.getIsSigned();
 	this->_gradeToSign = src.getGradeToSign();
 	this->_gradeToExecute = src.getGradeToExecute();
+	return *this;
 }
 
 void Form::checkGrade(int const &grade) const

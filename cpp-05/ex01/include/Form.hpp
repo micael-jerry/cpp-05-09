@@ -6,9 +6,12 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:34:06 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 10:49:07 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/14 15:12:43 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include <string>
 #include <iostream>
@@ -44,7 +47,7 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char *what() throw()
+		virtual const char *what() const throw()
 		{
 			return ("Grade too high");
 		}
@@ -53,7 +56,7 @@ public:
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char *what() throw()
+		virtual const char *what() const throw()
 		{
 			return ("Grade too low");
 		}
@@ -61,3 +64,5 @@ public:
 };
 
 std::ostream &operator<<(std::ostream &o, Form const &form);
+
+#endif
