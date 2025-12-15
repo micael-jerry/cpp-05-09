@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 15:27:31 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/16 05:53:23 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ AForm::AForm():
 	_gradeToExecute(BUREAUCRAT_MAX_GRADE) {}
 
 AForm::AForm(std::string const &name, int const &gradeToSign, int const &gradeToExecute) {
-	this->checkGrade(gradeToSign);
-	this->checkGrade(gradeToExecute);
+	this->checkGrade(gradeToSign, BUREAUCRAT_MIN_GRADE, BUREAUCRAT_MAX_GRADE);
+	this->checkGrade(gradeToExecute, BUREAUCRAT_MIN_GRADE, BUREAUCRAT_MAX_GRADE);
 	this->_name = name;
 	this->_isSigned = false;
 	this->_gradeToSign = gradeToSign;
@@ -45,12 +45,21 @@ AForm &AForm::operator=(AForm const &src) {
 	return *this;
 }
 
-void AForm::checkGrade(int const &grade) const
+void AForm::checkGrade(int const &grade, int const &minGrade, int const &maxGrade) const
 {
-	if (grade < BUREAUCRAT_MAX_GRADE)
+	if (grade < maxGrade)
 		throw AForm::GradeTooHighException();
-	if (grade > BUREAUCRAT_MIN_GRADE)
+	if (grade > minGrade)
 		throw AForm::GradeTooHighException();
+}
+
+void AForm::beSigned(Bureaucrat const &bureaucrat)
+{
+	if (bureaucrat.getGrade() <= this->_gradeToSign) {
+		this->_isSigned = true;
+		return ;
+	}
+	throw AForm::GradeTooLowException();
 }
 
 std::string const &AForm::getName(void) const
@@ -79,7 +88,6 @@ std::ostream &operator<<(std::ostream &o, AForm const &form)
 		<< form.getName()
 		<< ": Signed:" << form.getIsSigned()
 		<< " | GradeToSign:" << form.getGradeToSign()
-		<< " | GradeToExecute" << form.getGradeToExecute()
-		<< std::endl;
+		<< " | GradeToExecute" << form.getGradeToExecute();
 	return o;
 }

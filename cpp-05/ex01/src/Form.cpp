@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 15:27:22 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/15 05:48:48 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ std::ostream &operator<<(std::ostream &o, Form const &form)
 		<< form.getName()
 		<< ": Signed:" << form.getIsSigned()
 		<< " | GradeToSign:" << form.getGradeToSign()
-		<< " | GradeToExecute" << form.getGradeToExecute()
-		<< std::endl;
+		<< " | GradeToExecute" << form.getGradeToExecute();
 	return o;
 }

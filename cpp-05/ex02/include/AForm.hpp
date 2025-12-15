@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:34:06 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 15:26:05 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/16 06:00:11 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ private:
 	bool _isSigned;
 	int _gradeToSign;
 	int _gradeToExecute;
-	void checkGrade(int const &grade) const;
 
 public:
 	AForm();
 	AForm(std::string const &name, int const &gradeToSign, int const &gradeToExecute);
 	AForm(AForm const &src);
 
-	~AForm();
+	virtual ~AForm();
 
 	AForm &operator=(AForm const &src);
 
@@ -41,7 +40,9 @@ public:
 	bool const &getIsSigned(void) const;
 	int const &getGradeToSign(void) const;
 	int const &getGradeToExecute(void) const;
-	virtual void beSigned(Bureaucrat const &bureaucrat) = 0;
+	void beSigned(Bureaucrat const &bureaucrat);
+	void checkGrade(int const &grade, int const &minGrade, int const &maxGrade) const;
+	virtual void execute(Bureaucrat const &executor) const = 0;
 
 public:
 	class GradeTooHighException : public std::exception
@@ -59,6 +60,15 @@ public:
 		virtual const char *what() const throw()
 		{
 			return ("Grade too low");
+		}
+	};
+
+	class NotSignedFormException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw()
+		{
+			return ("Form not signed");
 		}
 	};
 };
