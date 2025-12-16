@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:52:28 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:03:18 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/16 21:05:47 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
-#define SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED 145
-#define SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED 137
+#define ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED 72
+#define ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED 45
 
-#include <fstream>
+#include <cstdlib>
 #include "./AForm.hpp"
 
-class ShrubberyCreationForm: public AForm
+class RobotomyRequestForm: public AForm
 {
 private:
 	std::string _target;
-	ShrubberyCreationForm();
-	int writeTreeInFile(std::string const &filename) const;
+	RobotomyRequestForm();
+	bool isRobotomizationSuccess() const;
 
 public:
-	ShrubberyCreationForm(std::string const &target);
-	ShrubberyCreationForm(ShrubberyCreationForm const &src);
+	RobotomyRequestForm(std::string const &target);
+	RobotomyRequestForm(RobotomyRequestForm const &src);
 
-	~ShrubberyCreationForm();
+	~RobotomyRequestForm();
 
-	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &src);
+	RobotomyRequestForm &operator=(RobotomyRequestForm const &src);
 
 	std::string const &getTarget() const;
 	void execute(Bureaucrat const &executor) const;
 };
 
-std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &form);
+std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &form);
 
 #endif
