@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 05:53:23 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/17 05:35:54 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void AForm::checkGrade(int const &grade, int const &minGrade,
   if (grade < maxGrade)
     throw AForm::GradeTooHighException();
   if (grade > minGrade)
-    throw AForm::GradeTooHighException();
+    throw AForm::GradeTooLowException();
 }
 
 void AForm::beSigned(Bureaucrat const &bureaucrat) {

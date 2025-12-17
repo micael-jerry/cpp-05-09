@@ -3,7 +3,7 @@ CPP_C= c++
 CPP_FLAG= -Wall -Werror -Wextra -std=c++98
 
 SRC_DIR= ./src
-SRC= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp
+SRC= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJ_DIR= ./obj
 OBJ= $(SRC:.cpp=.o)
