@@ -12,14 +12,13 @@
 
 #include "../include/Bureaucrat.hpp"
 
-int main(void)
-{
-	Bureaucrat tom = Bureaucrat("Tom", 50);
-	Form form1 = Form("1", 60, 60);
-	Form form2 = Form("2", 40, 40);
+int main(void) {
+  Bureaucrat tom = Bureaucrat("Tom", 50);
+  Form form1 = Form("1", 60, 60);
+  Form form2 = Form("2", 40, 40);
 
-	tom.signForm(form1);
-	tom.signForm(form2);
+  tom.signForm(form1);
+  tom.signForm(form2);
 
-	return 0;
+  return 0;
 }

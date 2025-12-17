@@ -1,0 +1,27 @@
+BasedOnStyle: Google
+
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+
+ColumnLimit: 80
+
+BreakBeforeBraces: Attach
+
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+PointerAlignment: Left
+
+SortIncludes: true
+
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: false
+
+AlignOperands: true
+AlignTrailingComments: true
+
+ReflowComments: true
+
+Standard: Cpp03

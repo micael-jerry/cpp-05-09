@@ -17,25 +17,25 @@
 #define ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED 45
 
 #include <cstdlib>
+
 #include "./AForm.hpp"
 
-class RobotomyRequestForm: public AForm
-{
-private:
-	std::string _target;
-	RobotomyRequestForm();
-	bool isRobotomizationSuccess() const;
+class RobotomyRequestForm : public AForm {
+ private:
+  std::string _target;
+  RobotomyRequestForm();
+  bool isRobotomizationSuccess() const;
 
-public:
-	RobotomyRequestForm(std::string const &target);
-	RobotomyRequestForm(RobotomyRequestForm const &src);
+ public:
+  RobotomyRequestForm(std::string const &target);
+  RobotomyRequestForm(RobotomyRequestForm const &src);
 
-	~RobotomyRequestForm();
+  ~RobotomyRequestForm();
 
-	RobotomyRequestForm &operator=(RobotomyRequestForm const &src);
+  RobotomyRequestForm &operator=(RobotomyRequestForm const &src);
 
-	std::string const &getTarget() const;
-	void execute(Bureaucrat const &executor) const;
+  std::string const &getTarget() const;
+  void execute(Bureaucrat const &executor) const;
 };
 
 std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &form);

@@ -12,15 +12,13 @@
 
 #include "../include/Bureaucrat.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
-int main(void)
-{
-	Bureaucrat tom = Bureaucrat("Tom", 50);
-	ShrubberyCreationForm form1 = ShrubberyCreationForm("target1");
+int main(void) {
+  Bureaucrat tom = Bureaucrat("Tom", 50);
+  ShrubberyCreationForm form1 = ShrubberyCreationForm("target1");
 
-	std::cout << form1 << std::endl;
-	tom.signForm(form1);
-	std::cout << form1 << std::endl;
+  std::cout << form1 << std::endl;
+  tom.signForm(form1);
+  std::cout << form1 << std::endl;
 
-
-	return 0;
+  return 0;
 }

@@ -17,24 +17,24 @@
 #define PRESIDENTIALPARDONFORM_EXEC_GRADE_REQUIRED 45
 
 #include <cstdlib>
+
 #include "./AForm.hpp"
 
-class PresidentialPardonForm: public AForm
-{
-private:
-	std::string _target;
-	PresidentialPardonForm();
+class PresidentialPardonForm : public AForm {
+ private:
+  std::string _target;
+  PresidentialPardonForm();
 
-public:
-	PresidentialPardonForm(std::string const &target);
-	PresidentialPardonForm(PresidentialPardonForm const &src);
+ public:
+  PresidentialPardonForm(std::string const &target);
+  PresidentialPardonForm(PresidentialPardonForm const &src);
 
-	~PresidentialPardonForm();
+  ~PresidentialPardonForm();
 
-	PresidentialPardonForm &operator=(PresidentialPardonForm const &src);
+  PresidentialPardonForm &operator=(PresidentialPardonForm const &src);
 
-	std::string const &getTarget() const;
-	void execute(Bureaucrat const &executor) const;
+  std::string const &getTarget() const;
+  void execute(Bureaucrat const &executor) const;
 };
 
 std::ostream &operator<<(std::ostream &o, PresidentialPardonForm const &form);

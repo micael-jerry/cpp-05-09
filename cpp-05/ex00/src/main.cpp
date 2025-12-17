@@ -12,25 +12,24 @@
 
 #include "../include/Bureaucrat.hpp"
 
-int main(void)
-{
-	try {
-		Bureaucrat tom = Bureaucrat("Tom", 1);
-		std::cout << tom << std::endl;
-		tom.incrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+int main(void) {
+  try {
+    Bureaucrat tom = Bureaucrat("Tom", 1);
+    std::cout << tom << std::endl;
+    tom.incrementGrade();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 
-	std::cout << "----------------" << std::endl;
+  std::cout << "----------------" << std::endl;
 
-	try {
-		Bureaucrat jerry = Bureaucrat("Jerry", 150);
-		std::cout << jerry << std::endl;
-		jerry.decrementGrade();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+  try {
+    Bureaucrat jerry = Bureaucrat("Jerry", 150);
+    std::cout << jerry << std::endl;
+    jerry.decrementGrade();
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
 
-	return 0;
+  return 0;
 }

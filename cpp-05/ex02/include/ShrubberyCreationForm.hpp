@@ -17,25 +17,25 @@
 #define SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED 137
 
 #include <fstream>
+
 #include "./AForm.hpp"
 
-class ShrubberyCreationForm: public AForm
-{
-private:
-	std::string _target;
-	ShrubberyCreationForm();
-	int writeTreeInFile(std::string const &filename) const;
+class ShrubberyCreationForm : public AForm {
+ private:
+  std::string _target;
+  ShrubberyCreationForm();
+  int writeTreeInFile(std::string const &filename) const;
 
-public:
-	ShrubberyCreationForm(std::string const &target);
-	ShrubberyCreationForm(ShrubberyCreationForm const &src);
+ public:
+  ShrubberyCreationForm(std::string const &target);
+  ShrubberyCreationForm(ShrubberyCreationForm const &src);
 
-	~ShrubberyCreationForm();
+  ~ShrubberyCreationForm();
 
-	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &src);
+  ShrubberyCreationForm &operator=(ShrubberyCreationForm const &src);
 
-	std::string const &getTarget() const;
-	void execute(Bureaucrat const &executor) const;
+  std::string const &getTarget() const;
+  void execute(Bureaucrat const &executor) const;
 };
 
 std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &form);
