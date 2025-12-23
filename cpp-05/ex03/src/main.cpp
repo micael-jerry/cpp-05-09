@@ -11,31 +11,28 @@
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
-#include "../include/PresidentialPardonForm.hpp"
 #include "../include/Intern.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
-int main()
-{
-    Intern someIntern;
-    Bureaucrat boss("Boss", 1);
+int main() {
+  Intern someIntern;
+  Bureaucrat boss("Boss", 1);
 
-    AForm *form;
+  AForm *form;
 
-    std::cout << "\n=== Valid form ===" << std::endl;
-    form = someIntern.makeForm("ShrubberyCreationForm", "Test");
-    if (form)
-    {
-        boss.signForm(*form);
-        boss.executeForm(*form);
-        delete form;
-    }
+  std::cout << "\n=== Valid form ===" << std::endl;
+  form = someIntern.makeForm("ShrubberyCreationForm", "Test");
+  if (form) {
+    boss.signForm(*form);
+    boss.executeForm(*form);
+    delete form;
+  }
 
-    std::cout << "\n=== Invalid form ===" << std::endl;
-    form = someIntern.makeForm("unknown form", "Nobody");
-    if (form)
-        delete form;
+  std::cout << "\n=== Invalid form ===" << std::endl;
+  form = someIntern.makeForm("unknown form", "Nobody");
+  if (form) delete form;
 
-    return 0;
+  return 0;
 }

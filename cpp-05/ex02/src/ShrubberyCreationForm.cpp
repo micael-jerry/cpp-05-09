@@ -16,28 +16,24 @@ ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("shrubbery_creation_form",
             SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED,
             SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED),
-      _target("default_target") {
-}
+      _target("default_target") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target)
     : AForm("shrubbery_creation_form",
             SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED,
             SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED),
-      _target(target) {
-}
+      _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src)
     : AForm(src) {
   this->_target = src.getTarget();
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {
-}
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(
     ShrubberyCreationForm const &src) {
-  if (this == &src)
-    return (*this);
+  if (this == &src) return (*this);
   AForm::operator=(src);
   this->_target = src.getTarget();
   return (*this);

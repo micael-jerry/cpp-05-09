@@ -16,8 +16,7 @@ AForm::AForm()
     : _name("default_form"),
       _isSigned(false),
       _gradeToSign(BUREAUCRAT_MAX_GRADE),
-      _gradeToExecute(BUREAUCRAT_MAX_GRADE) {
-}
+      _gradeToExecute(BUREAUCRAT_MAX_GRADE) {}
 
 AForm::AForm(std::string const &name, int const &gradeToSign,
              int const &gradeToExecute) {
@@ -33,15 +32,12 @@ AForm::AForm(AForm const &src)
     : _name(src.getName()),
       _isSigned(src.getIsSigned()),
       _gradeToSign(src.getGradeToSign()),
-      _gradeToExecute(src.getGradeToExecute()) {
-}
+      _gradeToExecute(src.getGradeToExecute()) {}
 
-AForm::~AForm() {
-}
+AForm::~AForm() {}
 
 AForm &AForm::operator=(AForm const &src) {
-  if (this == &src)
-    return *this;
+  if (this == &src) return *this;
   this->_name = src.getName();
   this->_isSigned = src.getIsSigned();
   this->_gradeToSign = src.getGradeToSign();
@@ -51,10 +47,8 @@ AForm &AForm::operator=(AForm const &src) {
 
 void AForm::checkGrade(int const &grade, int const &minGrade,
                        int const &maxGrade) const {
-  if (grade < maxGrade)
-    throw AForm::GradeTooHighException();
-  if (grade > minGrade)
-    throw AForm::GradeTooLowException();
+  if (grade < maxGrade) throw AForm::GradeTooHighException();
+  if (grade > minGrade) throw AForm::GradeTooLowException();
 }
 
 void AForm::beSigned(Bureaucrat const &bureaucrat) {
@@ -65,17 +59,11 @@ void AForm::beSigned(Bureaucrat const &bureaucrat) {
   throw AForm::GradeTooLowException();
 }
 
-std::string const &AForm::getName(void) const {
-  return this->_name;
-}
+std::string const &AForm::getName(void) const { return this->_name; }
 
-bool const &AForm::getIsSigned(void) const {
-  return this->_isSigned;
-}
+bool const &AForm::getIsSigned(void) const { return this->_isSigned; }
 
-int const &AForm::getGradeToSign(void) const {
-  return this->_gradeToSign;
-}
+int const &AForm::getGradeToSign(void) const { return this->_gradeToSign; }
 
 int const &AForm::getGradeToExecute(void) const {
   return this->_gradeToExecute;

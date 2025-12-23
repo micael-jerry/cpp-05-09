@@ -11,31 +11,30 @@
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
 #include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
-int main()
-{
-    Bureaucrat boss("Boss", 1);
-    Bureaucrat worker("Worker", 140);
+int main() {
+  Bureaucrat boss("Boss", 1);
+  Bureaucrat worker("Worker", 140);
 
-    ShrubberyCreationForm shrub("home");
-    RobotomyRequestForm robot("Bender");
-    PresidentialPardonForm pardon("Arthur Dent");
+  ShrubberyCreationForm shrub("home");
+  RobotomyRequestForm robot("Bender");
+  PresidentialPardonForm pardon("Arthur Dent");
 
-    std::cout << "\n=== Signing forms ===" << std::endl;
-    boss.signForm(shrub);
-    boss.signForm(robot);
-    boss.signForm(pardon);
+  std::cout << "\n=== Signing forms ===" << std::endl;
+  boss.signForm(shrub);
+  boss.signForm(robot);
+  boss.signForm(pardon);
 
-    std::cout << "\n=== Executing forms ===" << std::endl;
-    boss.executeForm(shrub);
-    boss.executeForm(robot);
-    boss.executeForm(pardon);
+  std::cout << "\n=== Executing forms ===" << std::endl;
+  boss.executeForm(shrub);
+  boss.executeForm(robot);
+  boss.executeForm(pardon);
 
-    std::cout << "\n=== Execution failure (grade too low) ===" << std::endl;
-    worker.executeForm(shrub);
+  std::cout << "\n=== Execution failure (grade too low) ===" << std::endl;
+  worker.executeForm(shrub);
 
-    return 0;
+  return 0;
 }

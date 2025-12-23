@@ -15,27 +15,23 @@
 RobotomyRequestForm::RobotomyRequestForm()
     : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
             ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
-      _target("default_target") {
-}
+      _target("default_target") {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target)
     : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
             ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
-      _target(target) {
-}
+      _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src)
     : AForm(src) {
   this->_target = src.getTarget();
 }
 
-RobotomyRequestForm::~RobotomyRequestForm() {
-}
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(
     RobotomyRequestForm const &src) {
-  if (this == &src)
-    return (*this);
+  if (this == &src) return (*this);
   AForm::operator=(src);
   this->_target = src.getTarget();
   return (*this);

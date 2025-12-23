@@ -24,15 +24,11 @@ AForm *Intern::shrubberyCreationFormBuilder(std::string const &target) {
   return new ShrubberyCreationForm(target);
 }
 
-Intern::Intern() {
-}
+Intern::Intern() {}
 
-Intern::Intern(Intern const &src) {
-  (void)src;
-}
+Intern::Intern(Intern const &src) { (void)src; }
 
-Intern::~Intern() {
-}
+Intern::~Intern() {}
 
 Intern &Intern::operator=(Intern const &src) {
   (void)src;

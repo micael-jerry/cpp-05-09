@@ -22,12 +22,9 @@
 
 class Intern {
  private:
-  static AForm *presidentialPardonFormBuilder(
-      std::string const &target);
-  static AForm *robotomyRequestFormBuilder(
-      std::string const &target);
-  static AForm *shrubberyCreationFormBuilder(
-      std::string const &target);
+  static AForm *presidentialPardonFormBuilder(std::string const &target);
+  static AForm *robotomyRequestFormBuilder(std::string const &target);
+  static AForm *shrubberyCreationFormBuilder(std::string const &target);
 
  public:
   Intern();

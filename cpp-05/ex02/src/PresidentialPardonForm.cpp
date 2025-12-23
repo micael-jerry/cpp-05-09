@@ -16,15 +16,13 @@ PresidentialPardonForm::PresidentialPardonForm()
     : AForm("shrubbery_creation_form",
             PRESIDENTIALPARDONFORM_SIGN_GRADE_REQUIRED,
             PRESIDENTIALPARDONFORM_EXEC_GRADE_REQUIRED),
-      _target("default_target") {
-}
+      _target("default_target") {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string const &target)
     : AForm("shrubbery_creation_form",
             PRESIDENTIALPARDONFORM_SIGN_GRADE_REQUIRED,
             PRESIDENTIALPARDONFORM_EXEC_GRADE_REQUIRED),
-      _target(target) {
-}
+      _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(
     PresidentialPardonForm const &src)
@@ -32,13 +30,11 @@ PresidentialPardonForm::PresidentialPardonForm(
   this->_target = src.getTarget();
 }
 
-PresidentialPardonForm::~PresidentialPardonForm() {
-}
+PresidentialPardonForm::~PresidentialPardonForm() {}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(
     PresidentialPardonForm const &src) {
-  if (this == &src)
-    return (*this);
+  if (this == &src) return (*this);
   AForm::operator=(src);
   this->_target = src.getTarget();
   return (*this);
