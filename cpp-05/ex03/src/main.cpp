@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:02:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:54:09 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/23 05:12:20 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main()
     AForm *form;
 
     std::cout << "\n=== Valid form ===" << std::endl;
-    form = someIntern.makeForm("robotomy request", "Bender");
+    form = someIntern.makeForm("ShrubberyCreationForm", "Test");
     if (form)
     {
         boss.signForm(*form);
