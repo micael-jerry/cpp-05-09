@@ -6,15 +6,15 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:38:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/28 07:24:45 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/29 04:32:34 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ScalarConverter.hpp"
-#include "../include/ScalarUtils.hpp"
+#include "../include/ScalarTypeUtil.hpp"
 
 ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(std::string const &toConvert) {
-  ScalarUtils::printScalarValues(toConvert);
+  ScalarTypeUtil::printScalarValues(toConvert);
 }

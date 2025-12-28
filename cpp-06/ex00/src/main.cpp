@@ -6,11 +6,12 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:22:37 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/28 07:45:07 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:50:55 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <ostream>
 
 #include "../include/ScalarConverter.hpp"
 

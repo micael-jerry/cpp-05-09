@@ -6,11 +6,11 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/28 07:43:06 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/29 04:31:59 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ScalarUtils.hpp"
+#include "../include/ScalarTypeUtil.hpp"
 
 #include <climits>
 #include <cstddef>
@@ -52,6 +52,9 @@ static bool isScalarFloat(std::string const &str) {
   int fCount = 0;
   size_t i = 0;
 
+  if (str == "-inff" || str == "+inff" || str == "nanf") {
+    return true;
+  }
   if (str == "f" || str == ".f" || str == "+.f" || str == "-.f") {
     return false;
   }
@@ -86,14 +89,16 @@ static bool isScalarDouble(std::string const &str) {
   int dotCount = 0;
   size_t i = 0;
 
+  if (str == "-inf" || str == "+inf" || str == "nan") {
+    return true;
+  }
+  if (str == "." || str == "-." || str == "+.") {
+    return false;
+  }
   if ((str[i] == '-' || str[i] == '+') && str.length() == 1) {
     return false;
   } else if ((str[i] == '-' || str[i] == '+') && str.length() > 1) {
     i++;
-  }
-
-  if (str[i] == '.') {
-    return false;
   }
 
   for (size_t j = i; j < str.length(); j++) {
@@ -111,7 +116,7 @@ static bool isScalarDouble(std::string const &str) {
   return true;
 }
 
-ScalarUtils::ScalarType ScalarUtils::detectScalarType(std::string const &str) {
+ScalarTypeUtil::ScalarType ScalarTypeUtil::detectScalarType(std::string const &str) {
   if (str.empty()) {
     return SCALAR_INVALID;
   }
@@ -130,7 +135,7 @@ ScalarUtils::ScalarType ScalarUtils::detectScalarType(std::string const &str) {
   return SCALAR_INVALID;
 }
 
-void ScalarUtils::printScalarValues(std::string const &str) {
+void ScalarTypeUtil::printScalarValues(std::string const &str) {
   ScalarType type = detectScalarType(str);
 
   switch (type) {
