@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:34:00 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/24 05:47:53 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/28 07:23:29 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ enum ScalarType {
 };
 
 ScalarType detectScalarType(std::string const &str);
+void printScalarValues(std::string const &str);
 }
 
 #endif
