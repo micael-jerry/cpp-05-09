@@ -3,7 +3,7 @@ CPP_C= c++
 CPP_FLAG= -Wall -Werror -Wextra -std=c++98
 
 SRC_DIR= ./src
-SRC= ScalarConverter.cpp ScalarTypeUtil.cpp main.cpp
+SRC= ScalarConverter.cpp ScalarTypeUtil.cpp ScalarPrinter.cpp main.cpp
 
 OBJ_DIR= ./obj
 OBJ= $(SRC:.cpp=.o)

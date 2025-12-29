@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:50:35 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/25 19:19:36 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:10:57 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ class ScalarConverter {
   ~ScalarConverter();
 
   static void convert(std::string const &toConvert);
+
+private:
+  static char convertToChar(std::string const &toConvert);
+  static int convertToInt(std::string const &toConvert);
+  static float convertToFloat(std::string const &toConvert);
+  static double convertToDouble(std::string const &toConvert);
 };
 
 #endif

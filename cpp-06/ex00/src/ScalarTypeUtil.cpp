@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarUtils.cpp                                    :+:      :+:    :+:   */
+/*   ScalarTypeUtil.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/29 04:31:59 by mfidimal         ###   ########.fr       */
+/*   Updated: 2025/12/29 04:48:50 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <climits>
 #include <cstddef>
 #include <cstdlib>
-#include <iostream>
 #include <string>
 
 static bool isScalarChar(std::string const &str) {
@@ -133,26 +132,4 @@ ScalarTypeUtil::ScalarType ScalarTypeUtil::detectScalarType(std::string const &s
     return SCALAR_DOUBLE;
   }
   return SCALAR_INVALID;
-}
-
-void ScalarTypeUtil::printScalarValues(std::string const &str) {
-  ScalarType type = detectScalarType(str);
-
-  switch (type) {
-    case SCALAR_CHAR:
-      std::cout << "char: " << str << std::endl;
-      break;
-    case SCALAR_INT:
-      std::cout << "int: " << str << std::endl;
-      break;
-    case SCALAR_FLOAT:
-      std::cout << "float: " << str << std::endl;
-      break;
-    case SCALAR_DOUBLE:
-      std::cout << "double: " << str << std::endl;
-      break;
-    default:
-      std::cout << "Invalid input" << std::endl;
-      break;
-  }
 }
