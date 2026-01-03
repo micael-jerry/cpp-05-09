@@ -6,17 +6,15 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:52:28 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:03:18 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:30:32 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef SHRUBBERY_CREATION_FORM_HPP
+#define SHRUBBERY_CREATION_FORM_HPP
 
-#define SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED 145
-#define SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED 137
-
-#include <fstream>
+#define SHRUBBERY_CREATION_FORM_SIGN_GRADE_REQUIRED 145
+#define SHRUBBERY_CREATION_FORM_EXEC_GRADE_REQUIRED 137
 
 #include "./AForm.hpp"
 

@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/03 08:35:13 by mfidimal          #+#    #+#             */
+/*   Updated: 2026/01/03 08:49:39 by mfidimal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Bureaucrat.hpp"
+
+#include "../include/AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
 
@@ -21,9 +35,9 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src) {
   return (*this);
 }
 
-std::string Bureaucrat::getName(void) const { return (this->_name); }
+std::string const &Bureaucrat::getName(void) const { return (this->_name); }
 
-int Bureaucrat::getGrade(void) const { return (this->_grade); }
+int const &Bureaucrat::getGrade(void) const { return (this->_grade); }
 
 void Bureaucrat::incrementGrade(void) {
   if ((this->_grade - 1) < BUREAUCRAT_MAX_GRADE)

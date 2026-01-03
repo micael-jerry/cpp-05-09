@@ -6,20 +6,24 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 04:57:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:05:35 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:51:08 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/RobotomyRequestForm.hpp"
 
+#include <cstdlib>
+
+#include "../include/Bureaucrat.hpp"
+
 RobotomyRequestForm::RobotomyRequestForm()
-    : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
-            ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
+    : AForm("robotomy_request_form", ROBOTOMY_REQUEST_FORM_SIGN_GRADE_REQUIRED,
+            ROBOTOMY_REQUEST_FORM_EXEC_GRADE_REQUIRED),
       _target("default_target") {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target)
-    : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
-            ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
+    : AForm("robotomy_request_form", ROBOTOMY_REQUEST_FORM_SIGN_GRADE_REQUIRED,
+            ROBOTOMY_REQUEST_FORM_EXEC_GRADE_REQUIRED),
       _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src)
@@ -59,7 +63,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 }
 
 bool RobotomyRequestForm::isRobotomizationSuccess() const {
-  return (rand() % 2);
+  return (std::rand() % 2);
 }
 
 std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &form) {

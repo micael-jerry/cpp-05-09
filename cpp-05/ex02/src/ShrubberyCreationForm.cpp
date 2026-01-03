@@ -6,22 +6,26 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 04:57:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:04:45 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:31:38 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ShrubberyCreationForm.hpp"
 
+#include <fstream>
+
+#include "../include/Bureaucrat.hpp"
+
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("shrubbery_creation_form",
-            SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED,
-            SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED),
+            SHRUBBERY_CREATION_FORM_SIGN_GRADE_REQUIRED,
+            SHRUBBERY_CREATION_FORM_EXEC_GRADE_REQUIRED),
       _target("default_target") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target)
     : AForm("shrubbery_creation_form",
-            SHRUBBERYCREATIONFORM_SIGN_GRADE_REQUIRED,
-            SHRUBBERYCREATIONFORM_EXEC_GRADE_REQUIRED),
+            SHRUBBERY_CREATION_FORM_SIGN_GRADE_REQUIRED,
+            SHRUBBERY_CREATION_FORM_EXEC_GRADE_REQUIRED),
       _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src)

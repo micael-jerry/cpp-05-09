@@ -6,42 +6,41 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:35:54 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:33:45 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/AForm.hpp"
 
+#include "../include/Bureaucrat.hpp"
+
 AForm::AForm()
     : _name("default_form"),
-      _isSigned(false),
       _gradeToSign(BUREAUCRAT_MAX_GRADE),
-      _gradeToExecute(BUREAUCRAT_MAX_GRADE) {}
+      _gradeToExecute(BUREAUCRAT_MAX_GRADE),
+      _isSigned(false) {}
 
 AForm::AForm(std::string const &name, int const &gradeToSign,
-             int const &gradeToExecute) {
+             int const &gradeToExecute)
+    : _name(name),
+      _gradeToSign(gradeToSign),
+      _gradeToExecute(gradeToExecute),
+      _isSigned(false) {
   this->checkGrade(gradeToSign, BUREAUCRAT_MIN_GRADE, BUREAUCRAT_MAX_GRADE);
   this->checkGrade(gradeToExecute, BUREAUCRAT_MIN_GRADE, BUREAUCRAT_MAX_GRADE);
-  this->_name = name;
-  this->_isSigned = false;
-  this->_gradeToSign = gradeToSign;
-  this->_gradeToExecute = gradeToExecute;
 }
 
 AForm::AForm(AForm const &src)
     : _name(src.getName()),
-      _isSigned(src.getIsSigned()),
       _gradeToSign(src.getGradeToSign()),
-      _gradeToExecute(src.getGradeToExecute()) {}
+      _gradeToExecute(src.getGradeToExecute()),
+      _isSigned(src.getIsSigned()) {}
 
 AForm::~AForm() {}
 
 AForm &AForm::operator=(AForm const &src) {
   if (this == &src) return *this;
-  this->_name = src.getName();
   this->_isSigned = src.getIsSigned();
-  this->_gradeToSign = src.getGradeToSign();
-  this->_gradeToExecute = src.getGradeToExecute();
   return *this;
 }
 

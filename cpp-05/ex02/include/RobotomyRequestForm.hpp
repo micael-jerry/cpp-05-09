@@ -6,17 +6,15 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:52:28 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:05:47 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:24:31 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#ifndef ROBOTOMY_REQUEST_FORM_HPP
+#define ROBOTOMY_REQUEST_FORM_HPP
 
-#define ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED 72
-#define ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED 45
-
-#include <cstdlib>
+#define ROBOTOMY_REQUEST_FORM_SIGN_GRADE_REQUIRED 72
+#define ROBOTOMY_REQUEST_FORM_EXEC_GRADE_REQUIRED 45
 
 #include "./AForm.hpp"
 

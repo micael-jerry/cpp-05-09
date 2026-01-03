@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:34:06 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 06:00:11 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:36:10 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@
 #include <iostream>
 #include <string>
 
-#include "../include/Bureaucrat.hpp"
-
 class Bureaucrat;
 
 class AForm {
  private:
-  std::string _name;
+  std::string const _name;
+  int const _gradeToSign;
+  int const _gradeToExecute;
   bool _isSigned;
-  int _gradeToSign;
-  int _gradeToExecute;
 
  public:
   AForm();
