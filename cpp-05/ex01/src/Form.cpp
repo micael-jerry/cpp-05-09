@@ -6,42 +6,43 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:54:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:36:57 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:14:03 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Form.hpp"
 
+#include "../include/Bureaucrat.hpp"
+
 Form::Form()
     : _name("default_form"),
-      _isSigned(false),
       _gradeToSign(BUREAUCRAT_MAX_GRADE),
-      _gradeToExecute(BUREAUCRAT_MAX_GRADE) {}
+      _gradeToExecute(BUREAUCRAT_MAX_GRADE),
+      _isSigned(false) {}
 
 Form::Form(std::string const &name, int const &gradeToSign,
-           int const &gradeToExecute) {
+           int const &gradeToExecute)
+    : _name(name),
+      _gradeToSign(gradeToSign),
+      _gradeToExecute(gradeToExecute),
+      _isSigned(false) {
   this->checkGrade(gradeToSign);
   this->checkGrade(gradeToExecute);
-  this->_name = name;
-  this->_isSigned = false;
-  this->_gradeToSign = gradeToSign;
-  this->_gradeToExecute = gradeToExecute;
 }
 
 Form::Form(Form const &src)
     : _name(src.getName()),
-      _isSigned(src.getIsSigned()),
       _gradeToSign(src.getGradeToSign()),
-      _gradeToExecute(src.getGradeToExecute()) {}
+      _gradeToExecute(src.getGradeToExecute()),
+      _isSigned(src.getIsSigned()) {}
 
 Form::~Form() {}
 
 Form &Form::operator=(Form const &src) {
-  if (this == &src) return *this;
-  this->_name = src.getName();
+  if (this == &src) {
+    return *this;
+  }
   this->_isSigned = src.getIsSigned();
-  this->_gradeToSign = src.getGradeToSign();
-  this->_gradeToExecute = src.getGradeToExecute();
   return *this;
 }
 

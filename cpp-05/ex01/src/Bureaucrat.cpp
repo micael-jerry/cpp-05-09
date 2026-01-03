@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/03 06:57:17 by mfidimal          #+#    #+#             */
+/*   Updated: 2026/01/03 06:58:38 by mfidimal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Bureaucrat.hpp"
+
+#include "../include/Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
 
-Bureaucrat::Bureaucrat(std::string const &name, int const &grade) {
+Bureaucrat::Bureaucrat(std::string const &name, int const &grade)
+    : _name(name), _grade(grade) {
   if (grade < BUREAUCRAT_MAX_GRADE) throw Bureaucrat::GradeTooHighException();
   if (grade > BUREAUCRAT_MIN_GRADE) throw Bureaucrat::GradeTooLowException();
-  this->_name = name;
-  this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
@@ -16,14 +29,13 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src) {
   if (this == &src) return (*this);
-  this->_name = src.getName();
   this->_grade = src.getGrade();
   return (*this);
 }
 
-std::string Bureaucrat::getName(void) const { return (this->_name); }
+std::string const &Bureaucrat::getName(void) const { return (this->_name); }
 
-int Bureaucrat::getGrade(void) const { return (this->_grade); }
+int const &Bureaucrat::getGrade(void) const { return (this->_grade); }
 
 void Bureaucrat::incrementGrade(void) {
   if ((this->_grade - 1) < BUREAUCRAT_MAX_GRADE)

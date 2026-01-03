@@ -6,11 +6,12 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:02:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:12:10 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:09:23 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
+#include "../include/Form.hpp"
 
 int main() {
   Bureaucrat boss("Boss", 1);

@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:34:06 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 15:12:43 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:13:28 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 #include <iostream>
 #include <string>
 
-#include "../include/Bureaucrat.hpp"
-
 class Bureaucrat;
 
 class Form {
  private:
-  std::string _name;
+  std::string const _name;
+  int const _gradeToSign;
+  int const _gradeToExecute;
   bool _isSigned;
-  int _gradeToSign;
-  int _gradeToExecute;
+
   void checkGrade(int const &grade) const;
 
  public:
@@ -42,6 +41,7 @@ class Form {
   bool const &getIsSigned(void) const;
   int const &getGradeToSign(void) const;
   int const &getGradeToExecute(void) const;
+
   void beSigned(Bureaucrat const &bureaucrat);
 
  public:
