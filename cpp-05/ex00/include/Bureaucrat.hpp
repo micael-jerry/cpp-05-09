@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:06:39 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/14 05:09:01 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 06:05:54 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 class Bureaucrat {
  private:
-  std::string _name;
+  std::string const _name;
   int _grade;
 
  public:
@@ -33,8 +33,9 @@ class Bureaucrat {
 
   Bureaucrat &operator=(Bureaucrat const &src);
 
-  std::string getName(void) const;
-  int getGrade(void) const;
+  std::string const &getName(void) const;
+  int const &getGrade(void) const;
+
   void incrementGrade(void);
   void decrementGrade(void);
 
