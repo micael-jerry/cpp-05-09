@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:06:39 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/03 08:49:16 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 09:09:37 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AForm;
 
 class Bureaucrat {
  private:
-  std::string _name;
+  std::string const _name;
   int _grade;
 
  public:

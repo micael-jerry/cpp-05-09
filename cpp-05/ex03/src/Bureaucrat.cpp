@@ -1,12 +1,14 @@
 #include "../include/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
+#include "../include/AForm.hpp"
 
-Bureaucrat::Bureaucrat(std::string const &name, int const &grade) {
+Bureaucrat::Bureaucrat()
+    : _name("default_bureaucrat"), _grade(BUREAUCRAT_MIN_GRADE) {}
+
+Bureaucrat::Bureaucrat(std::string const &name, int const &grade)
+    : _name(name), _grade(grade) {
   if (grade < BUREAUCRAT_MAX_GRADE) throw Bureaucrat::GradeTooHighException();
   if (grade > BUREAUCRAT_MIN_GRADE) throw Bureaucrat::GradeTooLowException();
-  this->_name = name;
-  this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
@@ -16,14 +18,13 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src) {
   if (this == &src) return (*this);
-  this->_name = src.getName();
   this->_grade = src.getGrade();
   return (*this);
 }
 
-std::string Bureaucrat::getName(void) const { return (this->_name); }
+std::string const &Bureaucrat::getName(void) const { return (this->_name); }
 
-int Bureaucrat::getGrade(void) const { return (this->_grade); }
+int const &Bureaucrat::getGrade(void) const { return (this->_grade); }
 
 void Bureaucrat::incrementGrade(void) {
   if ((this->_grade - 1) < BUREAUCRAT_MAX_GRADE)

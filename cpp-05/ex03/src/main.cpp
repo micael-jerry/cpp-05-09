@@ -6,15 +6,12 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:02:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/23 05:12:20 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 09:06:27 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
 #include "../include/Intern.hpp"
-#include "../include/PresidentialPardonForm.hpp"
-#include "../include/RobotomyRequestForm.hpp"
-#include "../include/ShrubberyCreationForm.hpp"
 
 int main() {
   Intern someIntern;

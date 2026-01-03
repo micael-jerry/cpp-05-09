@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 06:57:17 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/03 06:58:38 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 09:15:29 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #include "../include/Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
+Bureaucrat::Bureaucrat()
+    : _name("default_bureaucrat"), _grade(BUREAUCRAT_MIN_GRADE) {}
 
 Bureaucrat::Bureaucrat(std::string const &name, int const &grade)
     : _name(name), _grade(grade) {

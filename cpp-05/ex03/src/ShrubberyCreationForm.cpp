@@ -6,11 +6,13 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 04:57:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:04:45 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:58:43 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ShrubberyCreationForm.hpp"
+
+#include "../include/Bureaucrat.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("shrubbery_creation_form",

@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:06:39 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:23:16 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 09:06:48 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 #include <iostream>
 #include <string>
 
-#include "../include/AForm.hpp"
-
 class AForm;
 
 class Bureaucrat {
  private:
-  std::string _name;
+  std::string const _name;
   int _grade;
 
  public:
@@ -37,8 +35,8 @@ class Bureaucrat {
 
   Bureaucrat &operator=(Bureaucrat const &src);
 
-  std::string getName(void) const;
-  int getGrade(void) const;
+  std::string const &getName(void) const;
+  int const &getGrade(void) const;
   void incrementGrade(void);
   void decrementGrade(void);
   void signForm(AForm &form) const throw();

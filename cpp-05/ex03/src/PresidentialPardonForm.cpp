@@ -6,20 +6,22 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 04:57:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 04:53:38 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:58:50 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PresidentialPardonForm.hpp"
 
+#include "../include/Bureaucrat.hpp"
+
 PresidentialPardonForm::PresidentialPardonForm()
-    : AForm("shrubbery_creation_form",
+    : AForm("presidential_pardon_form",
             PRESIDENTIALPARDONFORM_SIGN_GRADE_REQUIRED,
             PRESIDENTIALPARDONFORM_EXEC_GRADE_REQUIRED),
       _target("default_target") {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string const &target)
-    : AForm("shrubbery_creation_form",
+    : AForm("presidential_pardon_form",
             PRESIDENTIALPARDONFORM_SIGN_GRADE_REQUIRED,
             PRESIDENTIALPARDONFORM_EXEC_GRADE_REQUIRED),
       _target(target) {}

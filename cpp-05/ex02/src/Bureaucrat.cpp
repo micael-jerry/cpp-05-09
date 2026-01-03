@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 08:35:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/03 08:49:39 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 09:15:31 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include "../include/AForm.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default_bureaucrat") {}
+Bureaucrat::Bureaucrat()
+    : _name("default_bureaucrat"), _grade(BUREAUCRAT_MIN_GRADE) {}
 
-Bureaucrat::Bureaucrat(std::string const &name, int const &grade) {
+Bureaucrat::Bureaucrat(std::string const &name, int const &grade)
+    : _name(name), _grade(grade) {
   if (grade < BUREAUCRAT_MAX_GRADE) throw Bureaucrat::GradeTooHighException();
   if (grade > BUREAUCRAT_MIN_GRADE) throw Bureaucrat::GradeTooLowException();
-  this->_name = name;
-  this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
@@ -30,7 +30,6 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src) {
   if (this == &src) return (*this);
-  this->_name = src.getName();
   this->_grade = src.getGrade();
   return (*this);
 }

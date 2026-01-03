@@ -6,19 +6,21 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 04:57:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/16 21:05:35 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/03 08:58:37 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/RobotomyRequestForm.hpp"
 
+#include "../include/Bureaucrat.hpp"
+
 RobotomyRequestForm::RobotomyRequestForm()
-    : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
+    : AForm("robotomy_request_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
             ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
       _target("default_target") {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target)
-    : AForm("shrubbery_creation_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
+    : AForm("robotomy_request_form", ROBOTOMYREQUESTFORM_SIGN_GRADE_REQUIRED,
             ROBOTOMYREQUESTFORM_EXEC_GRADE_REQUIRED),
       _target(target) {}
 
