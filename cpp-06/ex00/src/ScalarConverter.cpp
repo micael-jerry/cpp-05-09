@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:38:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/04 06:34:41 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/04 19:04:27 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ char ScalarConverter::convertToChar(std::string const &toConvert) {
 }
 
 int ScalarConverter::convertToInt(std::string const &toConvert) {
-  return std::atol(toConvert.c_str());
+  const long value = std::strtol(toCovnert.c_str(), NULL);
+  // TODO: convert int
 }
 
 float ScalarConverter::convertToFloat(std::string const &toConvert) {
