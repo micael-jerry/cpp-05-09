@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:02:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/17 05:24:36 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/04 17:36:46 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,32 @@
 #include "../include/ShrubberyCreationForm.hpp"
 
 int main() {
-  Bureaucrat boss("Boss", 1);
-  Bureaucrat worker("Worker", 140);
+  try
+  {
+    Bureaucrat boss("Boss", 1);
+    Bureaucrat worker("Worker", 140);
 
-  ShrubberyCreationForm shrub("home");
-  RobotomyRequestForm robot("Bender");
-  PresidentialPardonForm pardon("Arthur Dent");
+    ShrubberyCreationForm shrub("home");
+    RobotomyRequestForm robot("Bender");
+    PresidentialPardonForm pardon("Arthur Dent");
 
-  std::cout << "\n=== Signing forms ===" << std::endl;
-  boss.signForm(shrub);
-  boss.signForm(robot);
-  boss.signForm(pardon);
+    std::cout << "\n=== Signing forms ===" << std::endl;
+    boss.signForm(shrub);
+    boss.signForm(robot);
+    boss.signForm(pardon);
 
-  std::cout << "\n=== Executing forms ===" << std::endl;
-  boss.executeForm(shrub);
-  boss.executeForm(robot);
-  boss.executeForm(pardon);
+    std::cout << "\n=== Executing forms ===" << std::endl;
+    boss.executeForm(shrub);
+    boss.executeForm(robot);
+    boss.executeForm(pardon);
 
-  std::cout << "\n=== Execution failure (grade too low) ===" << std::endl;
-  worker.executeForm(shrub);
+    std::cout << "\n=== Execution failure (grade too low) ===" << std::endl;
+    worker.executeForm(shrub);
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
 
   return 0;
 }
