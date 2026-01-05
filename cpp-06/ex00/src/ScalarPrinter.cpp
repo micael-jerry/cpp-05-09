@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/04 06:27:57 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/05 06:31:03 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,17 @@ void ScalarPrinter::printIntBase(int const &integer) {
 }
 
 void ScalarPrinter::printFloatBase(float const &flt) {
-  (void) flt;
+  std::cout << "char: "
+            << ((flt < CHAR_MIN || flt > CHAR_MAX) ? "impossible"
+                : std::isprint(flt) ? std::string(1, static_cast<char>(flt))
+                                    : "Non displayable")
+            << std::endl
+            << "int: " << static_cast<int>(flt) << std::endl
+            << "float: " << flt << "f" << std::endl
+            << "double: " << static_cast<double>(flt) << std::endl;
 }
 
-void ScalarPrinter::printDoubleBase(double const &dbl) {
-  (void) dbl;
-}
+void ScalarPrinter::printDoubleBase(double const &dbl) { (void)dbl; }
 
 void ScalarPrinter::printInvalidBase() {
   std::cout << "char: " << "impossible" << std::endl
