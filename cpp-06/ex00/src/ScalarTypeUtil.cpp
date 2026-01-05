@@ -6,15 +6,16 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/04 06:22:09 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/05 06:27:10 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ScalarTypeUtil.hpp"
 
+#include <cfloat>
+#include <climits>
 #include <cstddef>
 #include <cstdlib>
-#include <limits>
 #include <string>
 
 static bool isScalarChar(std::string const &str) {
@@ -39,8 +40,7 @@ static bool isScalarInt(std::string const &str) {
   }
 
   const long value = std::strtol(str.c_str(), NULL, 10);
-  if (value < std::numeric_limits<int>::min() ||
-      value > std::numeric_limits<int>::max()) {
+  if (value < INT_MIN || value > INT_MAX) {
     return false;
   }
 
@@ -79,6 +79,11 @@ static bool isScalarFloat(std::string const &str) {
   }
 
   if (dotCount > 1 || fCount > 1) {
+    return false;
+  }
+
+  const double value = std::strtof(str.c_str(), NULL);
+  if (value < FLT_MIN || value > FLT_MAX) {
     return false;
   }
 
