@@ -14,8 +14,7 @@
 #include "../include/Form.hpp"
 
 int main() {
-  try
-  {
+  try {
     Bureaucrat boss("Boss", 1);
     Bureaucrat employee("Employee", 150);
 
@@ -30,9 +29,7 @@ int main() {
     boss.signForm(contract);
 
     std::cout << contract << std::endl;
-  }
-  catch(const std::exception& e)
-  {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
   return 0;

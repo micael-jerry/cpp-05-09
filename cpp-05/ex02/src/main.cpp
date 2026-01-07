@@ -16,8 +16,7 @@
 #include "../include/ShrubberyCreationForm.hpp"
 
 int main() {
-  try
-  {
+  try {
     Bureaucrat boss("Boss", 1);
     Bureaucrat worker("Worker", 140);
 
@@ -37,9 +36,7 @@ int main() {
 
     std::cout << "\n=== Execution failure (grade too low) ===" << std::endl;
     worker.executeForm(shrub);
-  }
-  catch(const std::exception& e)
-  {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
 

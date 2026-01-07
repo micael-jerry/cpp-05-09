@@ -26,7 +26,7 @@ class ScalarConverter {
 
   static void convert(std::string const &toConvert);
 
-private:
+ private:
   static char convertToChar(std::string const &toConvert);
   static int convertToInt(std::string const &toConvert);
   static float convertToFloat(std::string const &toConvert);

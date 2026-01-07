@@ -14,8 +14,7 @@
 #include "../include/Intern.hpp"
 
 int main() {
-  try
-  {
+  try {
     Intern someIntern;
     Bureaucrat boss("Boss", 1);
 
@@ -32,9 +31,7 @@ int main() {
     std::cout << "\n=== Invalid form ===" << std::endl;
     form = someIntern.makeForm("unknown form", "Nobody");
     if (form) delete form;
-  }
-  catch(const std::exception& e)
-  {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
 
