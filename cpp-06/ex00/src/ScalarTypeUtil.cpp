@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 06:18:53 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 19:46:03 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ static bool isScalarFloat(std::string const &str) {
   int fCount = 0;
   size_t i = 0;
 
-  if (str == "-inff" || str == "+inff" || str == "nanf") {
-    return true;
-  }
   if (str == "f" || str == ".f" || str == "+.f" || str == "-.f") {
     return false;
   }
@@ -94,9 +91,6 @@ static bool isScalarDouble(std::string const &str) {
   int dotCount = 0;
   size_t i = 0;
 
-  if (str == "-inf" || str == "+inf" || str == "nan") {
-    return true;
-  }
   if (str == "." || str == "-." || str == "+.") {
     return false;
   }
@@ -121,6 +115,16 @@ static bool isScalarDouble(std::string const &str) {
   return true;
 }
 
+static bool isScalarSpecial(std::string const &str) {
+  if (str == "-inff" || str == "+inff" || str == "nanf") {
+    return true;
+  }
+  if (str == "-inf" || str == "+inf" || str == "nan") {
+    return true;
+  }
+  return false;
+}
+
 ScalarTypeUtil::ScalarType ScalarTypeUtil::detectScalarType(
     std::string const &str) {
   if (str.empty()) {
@@ -137,6 +141,9 @@ ScalarTypeUtil::ScalarType ScalarTypeUtil::detectScalarType(
   }
   if (isScalarDouble(str)) {
     return SCALAR_DOUBLE;
+  }
+  if (isScalarSpecial(str)) {
+    return SCALAR_SPECIAL;
   }
   return SCALAR_INVALID;
 }

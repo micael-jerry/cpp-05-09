@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 06:26:42 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 21:09:05 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,20 @@ void ScalarPrinter::printFloatBase(float const &flt) {
                                     : "Non displayable")
             << std::endl
             << "int: " << static_cast<int>(flt) << std::endl
-            << "float: " << flt << "f" << std::endl
-            << "double: " << static_cast<double>(flt) << std::endl;
+            << "float: " << flt << "f" << std::endl;
+
+  if (static_cast<int>(flt) == flt) {
+    std::cout << "float: " << flt << ".0f" << std::endl;
+  } else {
+    std::cout << "float: " << flt << "f" << std::endl;
+  }
+
+  if (static_cast<int>(flt) == flt) {
+    std::cout << "double: " << static_cast<double>(flt) << ".0";
+  } else {
+    std::cout << "double: " << static_cast<double>(flt);
+  }
+  std::cout << std::endl;
 }
 
 void ScalarPrinter::printDoubleBase(double const &dbl) {
@@ -72,15 +84,33 @@ void ScalarPrinter::printDoubleBase(double const &dbl) {
 
   std::cout << "float: ";
   if (dbl < FLT_MIN || dbl > FLT_MAX) {
-    std::cout << "impossible";
-  } else if (static_cast<int>(dbl) < dbl) {
-    std::cout << static_cast<float>(dbl) << "f";
-  } else {
+    std::cout << "impossible" << (dbl < FLT_MIN);
+  } else if (static_cast<int>(dbl) == dbl) {
     std::cout << static_cast<float>(dbl) << ".0f";
+  } else {
+    std::cout << static_cast<float>(dbl) << "f";
   }
   std::cout << std::endl;
 
-  std::cout << "double: " << dbl << std::endl;
+  if (static_cast<long>(dbl) == dbl) {
+    std::cout << "double: " << dbl << ".0";
+  } else {
+    std::cout << "double: " << dbl;
+  }
+  std::cout << std::endl;
+}
+
+void ScalarPrinter::printSpecialBase(const std::string &spl) {
+  std::cout << "char: impossible" << std::endl;
+  std::cout << "int: impossible" << std::endl;
+
+  if (spl == "nan" || spl == "nanf") {
+    std::cout << "float: nanf" << std::endl << "double: nan" << std::endl;
+  } else if (spl == "+inf" || spl == "+inff") {
+    std::cout << "float: +inff" << std::endl << "double: +inf" << std::endl;
+  } else if (spl == "-inf" || spl == "-inff") {
+    std::cout << "float: -inff" << std::endl << "double: -inf" << std::endl;
+  }
 }
 
 void ScalarPrinter::printInvalidBase() {

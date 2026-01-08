@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:38:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 06:20:20 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 19:46:33 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void ScalarConverter::convert(std::string const &toConvert) {
   } else if (type == ScalarTypeUtil::SCALAR_DOUBLE) {
     double dbl = ScalarConverter::convertToDouble(toConvert);
     ScalarPrinter::printDoubleBase(dbl);
+  } else if (type == ScalarTypeUtil::SCALAR_SPECIAL) {
+    ScalarPrinter::printSpecialBase(toConvert);
   } else {
     ScalarPrinter::printInvalidBase();
   }
