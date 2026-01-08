@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:38:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/05 06:23:12 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 06:20:20 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ float ScalarConverter::convertToFloat(std::string const &toConvert) {
 }
 
 double ScalarConverter::convertToDouble(std::string const &toConvert) {
-  return std::strtof(toConvert.c_str(), NULL);
+  return std::strtod(toConvert.c_str(), NULL);
 }

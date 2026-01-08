@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/07 21:28:43 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 06:26:42 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+
+// TODO: PRINT SPECIAL CHARACTER
 
 void ScalarPrinter::printCharBase(char const &chr) {
   std::cout << "char: " << chr << std::endl
@@ -68,11 +70,13 @@ void ScalarPrinter::printDoubleBase(double const &dbl) {
   }
   std::cout << std::endl;
 
-  std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+  std::cout << "float: ";
   if (dbl < FLT_MIN || dbl > FLT_MAX) {
     std::cout << "impossible";
-  } else {
+  } else if (static_cast<int>(dbl) < dbl) {
     std::cout << static_cast<float>(dbl) << "f";
+  } else {
+    std::cout << static_cast<float>(dbl) << ".0f";
   }
   std::cout << std::endl;
 

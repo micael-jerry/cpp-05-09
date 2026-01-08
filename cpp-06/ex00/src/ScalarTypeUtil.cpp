@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/05 06:27:10 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/08 06:18:53 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static bool isScalarFloat(std::string const &str) {
     return false;
   }
 
-  const double value = std::strtof(str.c_str(), NULL);
+  const double value = std::strtod(str.c_str(), NULL);
   if (value < FLT_MIN || value > FLT_MAX) {
     return false;
   }
