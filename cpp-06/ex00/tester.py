@@ -106,111 +106,117 @@ def run_test_case(input_arg, expected_outputs):
 # --- Test Definitions ---
 # Each test is a tuple: (Input String, Dictionary of Expected Outputs)
 TESTS = [
-    # 1. Char Literal
+    # -------------------------------------------------------------------------
+    # 1. CHAR LITERALS
+    # -------------------------------------------------------------------------
     ("'a'", {
-        "char": "'a'",
-        "int": "97",
-        "float": "97.0f",
-        "double": "97.0"
+        "char": "'a'", "int": "97", "float": "97.0f", "double": "97.0"
     }),
-    # 2. Integer (Zero)
+    ("'*'", {
+        "char": "'*'", "int": "42", "float": "42.0f", "double": "42.0"
+    }),
+    # Logic: chars typically don't take signs in input unless it's a number being cast
+
+    # -------------------------------------------------------------------------
+    # 2. INT (Positive, Negative, Explicit Sign, Limits)
+    # -------------------------------------------------------------------------
     ("0", {
-        "char": "Non displayable",
-        "int": "0",
-        "float": "0.0f",
-        "double": "0.0"
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
     }),
-    # 3. Integer (Common)
+    ("+0", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
+    }),
+    ("-0", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
+    }),
     ("42", {
-        "char": "'*'",
-        "int": "42",
-        "float": "42.0f",
-        "double": "42.0"
+        "char": "'*'", "int": "42", "float": "42.0f", "double": "42.0"
     }),
-    # 4. Negative Integer
+    ("+42", {
+        "char": "'*'", "int": "42", "float": "42.0f", "double": "42.0"
+    }),
     ("-42", {
-        "char": "Non displayable",
-        "int": "-42",
-        "float": "-42.0f",
-        "double": "-42.0"
+        "char": "Non displayable", "int": "-42", "float": "-42.0f", "double": "-42.0"
     }),
-    # 5. Char Limit (Space is printable)
-    ("32", {
-        "char": "' '",
-        "int": "32",
-        "float": "32.0f",
-        "double": "32.0"
+    ("2147483647", {  # INT_MAX
+        "char": "impossible", "int": "2147483647", "float": "2147483647.0f", "double": "2147483647.0"
     }),
-    # 6. Char Limit (DEL is non-printable)
-    ("127", {
-        "char": "Non displayable",
-        "int": "127",
-        "float": "127.0f",
-        "double": "127.0"
+    ("-2147483648", {  # INT_MIN
+        "char": "impossible", "int": "-2147483648", "float": "-2147483648.0f", "double": "-2147483648.0"
     }),
-    # 7. Float with .0
-    ("42.0f", {
-        "char": "'*'",
-        "int": "42",
-        "float": "42.0f",
-        "double": "42.0"
+
+    # -------------------------------------------------------------------------
+    # 3. FLOAT (Suffix 'f')
+    # -------------------------------------------------------------------------
+    ("0.0f", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
     }),
-    # 8. Float with decimals
+    ("+0.0f", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
+    }),
+    ("-0.0f", {
+        "char": "Non displayable", "int": "0", "float": "-0.0f", "double": "-0.0"
+    }),
     ("4.2f", {
-        "char": "Non displayable",
-        "int": "4",
-        "float": "4.2f",
-        "double": "4.2"
+        "char": "Non displayable", "int": "4", "float": "4.2f", "double": "4.2"
     }),
-    # 9. Double with decimals
+    ("+4.2f", {
+        "char": "Non displayable", "int": "4", "float": "4.2f", "double": "4.2"
+    }),
+    ("-4.2f", {
+        "char": "Non displayable", "int": "-4", "float": "-4.2f", "double": "-4.2"
+    }),
+    ("42.0f", {
+        "char": "'*'", "int": "42", "float": "42.0f", "double": "42.0"
+    }),
+
+    # -------------------------------------------------------------------------
+    # 4. DOUBLE (No suffix)
+    # -------------------------------------------------------------------------
+    ("0.0", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
+    }),
+    ("+0.0", {
+        "char": "Non displayable", "int": "0", "float": "0.0f", "double": "0.0"
+    }),
+    ("-0.0", {
+        "char": "Non displayable", "int": "0", "float": "-0.0f", "double": "-0.0"
+    }),
     ("4.2", {
-        "char": "Non displayable",
-        "int": "4",
-        "float": "4.2f",
-        "double": "4.2"
+        "char": "Non displayable", "int": "4", "float": "4.2f", "double": "4.2"
     }),
-    # 10. Special: -inff
-    ("-inff", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "-inff",
-        "double": "-inf"
+    ("+4.2", {
+        "char": "Non displayable", "int": "4", "float": "4.2f", "double": "4.2"
     }),
-    # 11. Special: +inff
-    ("+inff", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "+inff",
-        "double": "+inf"
+    ("-4.2", {
+        "char": "Non displayable", "int": "-4", "float": "-4.2f", "double": "-4.2"
     }),
-    # 12. Special: nanf
-    ("nanf", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "nanf",
-        "double": "nan"
+    ("42.0", {
+        "char": "'*'", "int": "42", "float": "42.0f", "double": "42.0"
     }),
-    # 13. Special: -inf
-    ("-inf", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "-inff",
-        "double": "-inf"
-    }),
-    # 14. Special: +inf
-    ("+inf", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "+inff",
-        "double": "+inf"
-    }),
-    # 15. Special: nan
-    ("nan", {
-        "char": "impossible",
-        "int": "impossible",
-        "float": "nanf",
-        "double": "nan"
-    }),
+
+    # -------------------------------------------------------------------------
+    # 5. SPECIAL VALUES (Pseudo literals)
+    # -------------------------------------------------------------------------
+    # Float
+    ("inff", {"char": "impossible", "int": "impossible",
+     "float": "inff", "double": "inf"}),  # Often parsed as +inf
+    ("+inff", {"char": "impossible", "int": "impossible",
+     "float": "+inff", "double": "+inf"}),
+    ("-inff", {"char": "impossible", "int": "impossible",
+     "float": "-inff", "double": "-inf"}),
+    ("nanf", {"char": "impossible", "int": "impossible",
+     "float": "nanf", "double": "nan"}),
+
+    # Double
+    ("inf", {"char": "impossible", "int": "impossible",
+     "float": "inff", "double": "inf"}),
+    ("+inf", {"char": "impossible", "int": "impossible",
+     "float": "+inff", "double": "+inf"}),
+    ("-inf", {"char": "impossible", "int": "impossible",
+     "float": "-inff", "double": "-inf"}),
+    ("nan", {"char": "impossible", "int": "impossible",
+     "float": "nanf", "double": "nan"}),
 ]
 
 
