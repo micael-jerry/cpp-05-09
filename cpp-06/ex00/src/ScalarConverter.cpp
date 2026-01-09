@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 18:38:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 19:46:33 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/09 05:30:53 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void ScalarConverter::convert(std::string const &toConvert) {
 }
 
 char ScalarConverter::convertToChar(std::string const &toConvert) {
+  if (toConvert.length() == 3) {
+    return toConvert.at(1);
+  }
   return toConvert.at(0);
 }
 

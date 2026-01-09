@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 19:46:03 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/09 05:35:21 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 static bool isScalarChar(std::string const &str) {
   if (str.length() == 1 && !std::isdigit(str[0])) {
+    return true;
+  }
+  if (str.length() == 3 && str[0] == '\'' && str[2] == '\'') {
     return true;
   }
   return false;

@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 21:09:05 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/09 05:57:59 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,56 +19,60 @@
 #include <ostream>
 #include <string>
 
-// TODO: PRINT SPECIAL CHARACTER
-
 void ScalarPrinter::printCharBase(char const &chr) {
-  std::cout << "char: " << chr << std::endl
-            << "int: " << static_cast<int>(chr) << std::endl
+  std::cout << "char: ";
+  if (std::isprint(chr)) {
+    std::cout << "'" << chr << "'";
+  } else {
+    std::cout << "Non displayable";
+  }
+  std::cout << std::endl;
+
+  std::cout << "int: " << static_cast<int>(chr) << std::endl
             << "float: " << static_cast<float>(chr) << ".0f" << std::endl
             << "double: " << static_cast<double>(chr) << ".0" << std::endl;
 }
 
 void ScalarPrinter::printIntBase(int const &integer) {
-  std::cout << "char: "
-            << ((integer < CHAR_MIN || integer > CHAR_MAX) ? "impossible"
-                : std::isprint(integer)
-                    ? std::string(1, static_cast<char>(integer))
-                    : "Non displayable")
-            << std::endl
-            << "int: " << integer << std::endl
+  std::cout << "char: ";
+  if (integer < CHAR_MIN || integer > CHAR_MAX) {
+    std::cout << "impossible";
+  } else if (std::isprint(integer)) {
+    std::cout << "'" << static_cast<char>(integer) << "'";
+  } else {
+    std::cout << "Non displayable";
+  }
+  std::cout << std::endl;
+
+  std::cout << "int: " << integer << std::endl
             << "float: " << static_cast<float>(integer) << ".0f" << std::endl
             << "double: " << static_cast<double>(integer) << ".0" << std::endl;
 }
 
 void ScalarPrinter::printFloatBase(float const &flt) {
-  std::cout << "char: "
-            << ((flt < CHAR_MIN || flt > CHAR_MAX) ? "impossible"
-                : std::isprint(flt) ? std::string(1, static_cast<char>(flt))
-                                    : "Non displayable")
-            << std::endl
-            << "int: " << static_cast<int>(flt) << std::endl
-            << "float: " << flt << "f" << std::endl;
-
-  if (static_cast<int>(flt) == flt) {
-    std::cout << "float: " << flt << ".0f" << std::endl;
+  std::cout << "char: ";
+  if (flt < CHAR_MIN || flt > CHAR_MAX) {
+    std::cout << "impossible";
+  } else if (std::isprint(flt)) {
+    std::cout << "'" << static_cast<char>(flt) << "'";
   } else {
-    std::cout << "float: " << flt << "f" << std::endl;
-  }
-
-  if (static_cast<int>(flt) == flt) {
-    std::cout << "double: " << static_cast<double>(flt) << ".0";
-  } else {
-    std::cout << "double: " << static_cast<double>(flt);
+    std::cout << "Non displayable";
   }
   std::cout << std::endl;
+
+  std::cout << "int: " << static_cast<int>(flt) << std::endl;
+  std::cout << "float: " << flt << (static_cast<int>(flt) == flt ? ".0f" : "f")
+            << std::endl;
+  std::cout << "double: " << static_cast<double>(flt)
+            << (static_cast<int>(flt) == flt ? ".0" : "") << std::endl;
 }
 
 void ScalarPrinter::printDoubleBase(double const &dbl) {
   std::cout << "char: ";
   if (dbl < CHAR_MIN || dbl > CHAR_MAX) {
     std::cout << "impossible";
-  } else if (std::isprint(static_cast<int>(dbl))) {
-    std::cout << static_cast<char>(dbl);
+  } else if (std::isprint(dbl)) {
+    std::cout << "'" << static_cast<char>(dbl) << "'";
   } else {
     std::cout << "Non displayable";
   }
@@ -85,19 +89,13 @@ void ScalarPrinter::printDoubleBase(double const &dbl) {
   std::cout << "float: ";
   if (dbl < FLT_MIN || dbl > FLT_MAX) {
     std::cout << "impossible" << (dbl < FLT_MIN);
-  } else if (static_cast<int>(dbl) == dbl) {
-    std::cout << static_cast<float>(dbl) << ".0f";
   } else {
-    std::cout << static_cast<float>(dbl) << "f";
+    std::cout << static_cast<float>(dbl)
+              << (static_cast<int>(dbl) == dbl ? ".0f" : "f") << std::endl;
   }
-  std::cout << std::endl;
 
-  if (static_cast<long>(dbl) == dbl) {
-    std::cout << "double: " << dbl << ".0";
-  } else {
-    std::cout << "double: " << dbl;
-  }
-  std::cout << std::endl;
+  std::cout << "double: " << dbl << (static_cast<long>(dbl) == dbl ? ".0" : "")
+            << std::endl;
 }
 
 void ScalarPrinter::printSpecialBase(const std::string &spl) {
