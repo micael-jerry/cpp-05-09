@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/09 05:57:59 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/10 05:19:30 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ void ScalarPrinter::printDoubleBase(double const &dbl) {
 
   std::cout << "float: ";
   if (dbl < FLT_MIN || dbl > FLT_MAX) {
-    std::cout << "impossible" << (dbl < FLT_MIN);
+    std::cout << "impossible";
   } else {
     std::cout << static_cast<float>(dbl)
-              << (static_cast<int>(dbl) == dbl ? ".0f" : "f") << std::endl;
+              << (static_cast<int>(dbl) == dbl ? ".0f" : "f");
   }
+  std::cout << std::endl;
 
   std::cout << "double: " << dbl << (static_cast<long>(dbl) == dbl ? ".0" : "")
             << std::endl;
@@ -104,6 +105,8 @@ void ScalarPrinter::printSpecialBase(const std::string &spl) {
 
   if (spl == "nan" || spl == "nanf") {
     std::cout << "float: nanf" << std::endl << "double: nan" << std::endl;
+  } else if (spl == "inf" || spl == "inff") {
+    std::cout << "float: inff" << std::endl << "double: inf" << std::endl;
   } else if (spl == "+inf" || spl == "+inff") {
     std::cout << "float: +inff" << std::endl << "double: +inf" << std::endl;
   } else if (spl == "-inf" || spl == "-inff") {

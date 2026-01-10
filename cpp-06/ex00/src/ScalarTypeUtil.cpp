@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/09 05:35:21 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/10 05:15:57 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static bool isScalarFloat(std::string const &str) {
   }
 
   const double value = std::strtod(str.c_str(), NULL);
-  if (value < FLT_MIN || value > FLT_MAX) {
+  if (value < -FLT_MAX || value > FLT_MAX) {
     return false;
   }
 
@@ -119,10 +119,10 @@ static bool isScalarDouble(std::string const &str) {
 }
 
 static bool isScalarSpecial(std::string const &str) {
-  if (str == "-inff" || str == "+inff" || str == "nanf") {
+  if (str == "inff" || str == "-inff" || str == "+inff" || str == "nanf") {
     return true;
   }
-  if (str == "-inf" || str == "+inf" || str == "nan") {
+  if (str == "inf" || str == "-inf" || str == "+inf" || str == "nan") {
     return true;
   }
   return false;
