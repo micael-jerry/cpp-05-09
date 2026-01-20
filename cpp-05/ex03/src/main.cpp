@@ -6,14 +6,18 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 05:02:51 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/04 17:39:43 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/20 06:06:50 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
+#include <ctime>
 #include "../include/Bureaucrat.hpp"
 #include "../include/Intern.hpp"
 
 int main() {
+  std::srand(std::time(NULL));
+
   try {
     Intern someIntern;
     Bureaucrat boss("Boss", 1);
