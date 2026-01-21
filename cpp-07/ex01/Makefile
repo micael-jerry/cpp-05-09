@@ -1,4 +1,4 @@
-NAME= whatever
+NAME= iter
 CPP_C= c++
 CPP_FLAG= -Wall -Werror -Wextra -std=c++98
 
