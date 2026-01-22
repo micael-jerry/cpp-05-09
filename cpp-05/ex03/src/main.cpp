@@ -12,6 +12,7 @@
 
 #include <cstdlib>
 #include <ctime>
+
 #include "../include/Bureaucrat.hpp"
 #include "../include/Intern.hpp"
 

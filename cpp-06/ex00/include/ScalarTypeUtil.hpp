@@ -26,6 +26,6 @@ enum ScalarType {
 };
 
 ScalarType detectScalarType(std::string const &str);
-}
+}  // namespace ScalarTypeUtil
 
 #endif

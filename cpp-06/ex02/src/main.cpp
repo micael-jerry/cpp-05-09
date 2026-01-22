@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #include <cstdlib>
+
 #include "../include/Identifier.hpp"
 
 int main(void) {
-	Base *base = identifier::generate();
+  Base *base = identifier::generate();
 
-	identifier::identify(base);
-	identifier::identify(*base);
+  identifier::identify(base);
+  identifier::identify(*base);
 
-	delete base;
+  delete base;
 
-	return 0;
+  return 0;
 }
