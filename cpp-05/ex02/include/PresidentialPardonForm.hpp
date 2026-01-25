@@ -6,15 +6,15 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 15:52:28 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/03 08:22:20 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/25 17:41:04 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIAL_PARDON_FORM_HPP
 #define PRESIDENTIAL_PARDON_FORM_HPP
 
-#define PRESIDENTIAL_PARDON_FORM_SIGN_GRADE_REQUIRED 72
-#define PRESIDENTIAL_PARDON_FORM_EXEC_GRADE_REQUIRED 45
+#define PRESIDENTIAL_PARDON_FORM_SIGN_GRADE_REQUIRED 25
+#define PRESIDENTIAL_PARDON_FORM_EXEC_GRADE_REQUIRED 5
 
 #include "./AForm.hpp"
 
