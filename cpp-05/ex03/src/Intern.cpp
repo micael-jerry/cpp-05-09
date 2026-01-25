@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 05:58:15 by mfidimal          #+#    #+#             */
-/*   Updated: 2025/12/23 05:07:33 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:40:17 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ Intern &Intern::operator=(Intern const &src) {
 AForm *Intern::makeForm(std::string const &formName,
                         std::string const &target) {
   static t_form_builder formBuilderContainer[] = {
-      {"PresidentialPardonForm", &Intern::presidentialPardonFormBuilder},
-      {"RobotomyRequestForm", &Intern::robotomyRequestFormBuilder},
-      {"ShrubberyCreationForm", &Intern::shrubberyCreationFormBuilder}};
+      {"presidential pardon", &Intern::presidentialPardonFormBuilder},
+      {"robotomy request", &Intern::robotomyRequestFormBuilder},
+      {"shrubbery creation", &Intern::shrubberyCreationFormBuilder}};
 
-  for (int i; i < 3; i++) {
+  for (int i = 0; i < 3; i++) {
     if (formName == formBuilderContainer[i].name) {
       std::cout << "Intern create " << formName << std::endl;
       return formBuilderContainer[i].builder(target);
