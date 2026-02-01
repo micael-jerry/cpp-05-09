@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 05:16:41 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/22 05:56:42 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/01 13:51:00 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ Array<T> &Array<T>::operator=(Array<T> const &arr) {
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index) const {
+  // TODO: ajouter une autre attribut pour stocker le size ou trouver un moyen pour faire en sorte que size retourne toute la zone memoire occuper au lieu de verifier jute ce qui on des element
   const unsigned int size = this->size();
 
   if (index >= size) {
