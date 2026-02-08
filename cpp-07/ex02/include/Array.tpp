@@ -6,26 +6,27 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 05:16:41 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/01 13:51:00 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/08 06:24:04 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Array.hpp"
 
 template <typename T>
-Array<T>::Array() : _contents(new T[0]) {}
+Array<T>::Array() : _size(0), _contents(new T[0]) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _contents(new T[n]) {}
+Array<T>::Array(unsigned int n) : _size(n), _contents(new T[n]) {}
 
 template <typename T>
 Array<T>::Array(Array<T> const &arr) {
   const unsigned int arrSize = arr.size();
+
+  this->_size = arrSize;
   this->_contents = new T[arrSize];
 
   for (unsigned int i = 0; i < arrSize; i++) {
-    this->_contents[i] = arr[i];
+    this->_contents[i] = arr._contents[i];
   }
 }
 
@@ -40,7 +41,7 @@ Array<T> &Array<T>::operator=(Array<T> const &arr) {
   this->_contents = new T[arrSize];
 
   for (unsigned int i = 0; i < arrSize; i++) {
-    this->_contents[i] = arr[i];
+    this->_contents[i] = arr._contents[i];
   }
 
   return *this;
@@ -48,10 +49,7 @@ Array<T> &Array<T>::operator=(Array<T> const &arr) {
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index) const {
-  // TODO: ajouter une autre attribut pour stocker le size ou trouver un moyen pour faire en sorte que size retourne toute la zone memoire occuper au lieu de verifier jute ce qui on des element
-  const unsigned int size = this->size();
-
-  if (index >= size) {
+  if (index >= this->_size) {
     throw Array<T>::OutOfBoundsException();
   }
 
@@ -65,11 +63,5 @@ Array<T>::~Array() {
 
 template <typename T>
 unsigned int Array<T>::size() const {
-  unsigned int size = 0;
-
-  while (this->_contents[size]) {
-    size++;
-  }
-
-  return size;
+  return this->_size;
 }

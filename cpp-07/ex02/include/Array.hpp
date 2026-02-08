@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 04:52:34 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/22 05:39:28 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/08 05:59:49 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 template <typename T>
 class Array {
  private:
+  unsigned int _size;
   T *_contents;
 
  public:
