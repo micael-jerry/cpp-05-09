@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:41:10 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/10 05:15:57 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/15 20:37:15 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,4 +149,23 @@ ScalarTypeUtil::ScalarType ScalarTypeUtil::detectScalarType(
     return SCALAR_SPECIAL;
   }
   return SCALAR_INVALID;
+}
+
+char ScalarTypeUtil::convertToChar(std::string const &toConvert) {
+  if (toConvert.length() == 3) {
+    return toConvert.at(1);
+  }
+  return toConvert.at(0);
+}
+
+int ScalarTypeUtil::convertToInt(std::string const &toConvert) {
+  return std::strtol(toConvert.c_str(), NULL, 10);
+}
+
+float ScalarTypeUtil::convertToFloat(std::string const &toConvert) {
+  return std::strtof(toConvert.c_str(), NULL);
+}
+
+double ScalarTypeUtil::convertToDouble(std::string const &toConvert) {
+  return std::strtod(toConvert.c_str(), NULL);
 }

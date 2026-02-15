@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 05:34:00 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/08 19:43:31 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/15 20:36:11 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ enum ScalarType {
 };
 
 ScalarType detectScalarType(std::string const &str);
+
+char convertToChar(std::string const &toConvert);
+int convertToInt(std::string const &toConvert);
+float convertToFloat(std::string const &toConvert);
+double convertToDouble(std::string const &toConvert);
 }  // namespace ScalarTypeUtil
 
 #endif
