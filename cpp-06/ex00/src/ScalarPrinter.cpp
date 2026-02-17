@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 04:38:50 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/01/10 05:19:30 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/17 20:48:07 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void ScalarPrinter::printDoubleBase(double const &dbl) {
   std::cout << std::endl;
 
   std::cout << "float: ";
-  if (dbl < FLT_MIN || dbl > FLT_MAX) {
+  if (dbl < -FLT_MAX || dbl > FLT_MAX) {
     std::cout << "impossible";
   } else {
     std::cout << static_cast<float>(dbl)
