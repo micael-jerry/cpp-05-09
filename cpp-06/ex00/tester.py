@@ -20,9 +20,14 @@ def print_status(msg, color=RESET):
 
 def run_command(cmd, cwd=None):
     try:
+        # If cmd is a string, we might need to split it if we want shell=False,
+        # but here we expect the caller to pass a list if they want safety.
+        # However, to support existing usage (if any), we can check type.
+        # But per plan, we are changing the caller too.
+
         result = subprocess.run(
             cmd,
-            shell=True,
+            shell=False,
             cwd=cwd,
             check=False,  # We handle return codes manually
             stdout=subprocess.PIPE,
@@ -36,7 +41,7 @@ def run_command(cmd, cwd=None):
 
 def compile_project():
     print_status(">>> Compiling project with 'make re'...", CYAN)
-    _, stderr, code = run_command("make re", cwd=PROJ_DIR)
+    _, stderr, code = run_command(["make", "re"], cwd=PROJ_DIR)
     if code != 0:
         print_status("Compilation FAILED!", RED)
         print(stderr)
@@ -71,7 +76,7 @@ def check_match(key, expected, actual):
 def run_test_case(input_arg, expected_outputs):
     print(f"Testing input: [{YELLOW}{input_arg}{RESET}] ... ", end="")
 
-    cmd = f"{EXECUTABLE} '{input_arg}'"
+    cmd = [EXECUTABLE, input_arg]
     stdout, stderr, code = run_command(cmd)
 
     # Check for segfaults or nonzero exit (unless expected, but here we expect 0 usually)
