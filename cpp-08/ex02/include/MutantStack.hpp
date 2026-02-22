@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 06:13:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/21 07:34:33 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:10:51 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 template <typename T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container> {
  public:
+  MutantStack();
+  MutantStack(MutantStack const &other);
+  MutantStack& operator=(MutantStack const &other);
+  ~MutantStack();
+
   typedef typename Container::iterator iterator;
   typedef typename Container::const_iterator const_iterator;
 
