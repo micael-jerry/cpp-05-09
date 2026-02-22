@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 05:16:41 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/08 06:24:04 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:57:33 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ Array<T> &Array<T>::operator=(Array<T> const &arr) {
   }
 
   const unsigned int arrSize = arr.size();
+  
   delete[] this->_contents;
+  this->_size = arrSize;
   this->_contents = new T[arrSize];
 
   for (unsigned int i = 0; i < arrSize; i++) {
