@@ -6,12 +6,13 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 21:17:37 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/18 22:35:57 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/02/22 22:28:55 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Span.hpp"
 
+#include <algorithm>
 #include <cstdlib>
 #include <iterator>
 #include <limits>
@@ -55,16 +56,18 @@ int Span::shortestSpan() const {
   if (this->_contents.size() < 2) {
     throw Span::NotEnoughNumbersException();
   }
-  int min = std::numeric_limits<int>::max();
+  std::vector<int> contentTmp = this->_contents;
+  std::sort(contentTmp.begin(), contentTmp.end());
 
-  for (unsigned int i = 0; i < this->_contents.size() - 1; i++) {
-    for (unsigned int j = i + 1; j < this->_contents.size(); j++) {
-      int newMin = std::abs(this->_contents[i] - this->_contents[j]);
-      if (newMin < min) {
-        min = newMin;
-      }
+  int min = contentTmp[1] - contentTmp[0];
+
+  for (size_t i = 1; i < contentTmp.size() - 1; i++) {
+    int newMin = contentTmp[i + 1] - contentTmp[i];
+    if (newMin < min) {
+      min = newMin;
     }
   }
+
   return min;
 }
 
@@ -72,17 +75,10 @@ int Span::longestSpan() const {
   if (this->_contents.size() < 2) {
     throw Span::NotEnoughNumbersException();
   }
-  int max = std::numeric_limits<int>::min();
+  std::vector<int>::const_iterator itMin = std::min_element(this->_contents.begin(), this->_contents.end());
+  std::vector<int>::const_iterator itMax = std::max_element(this->_contents.begin(), this->_contents.end());
 
-  for (unsigned int i = 0; i < this->_contents.size() - 1; i++) {
-    for (unsigned int j = i + 1; j < this->_contents.size(); j++) {
-      int newMax = std::abs(this->_contents[i] - this->_contents[j]);
-      if (newMax > max) {
-        max = newMax;
-      }
-    }
-  }
-  return max;
+  return (*itMax - *itMin);
 }
 
 unsigned int Span::getSize() const { return this->_size; }
