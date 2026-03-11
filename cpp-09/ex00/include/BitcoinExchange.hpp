@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/10 06:36:27 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/11 06:10:11 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 
 namespace btcdata {
-std::map<std::string, double> parseFileContentToData(const char *filename);
+std::map<std::string, double> parseFileContent(const char *filename, char dateAndValueSeparator);
 }
 
 namespace btcutils {
