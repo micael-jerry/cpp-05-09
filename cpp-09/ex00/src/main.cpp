@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/11 06:14:35 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/12 05:57:44 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ int main(int argc, char const *argv[]) {
     std::cerr << "Invalid args" << std::endl;
     return 1;
   }
-  std::map<std::string, double> data =
-      btcdata::parseFileContent(DATA_FILE, ',');
-  std::map<std::string, double> btcValue =
-      btcdata::parseFileContent(argv[1], '|');
+  std::map<std::string, double> db = btcdata::parseFileContent(DATA_FILE, ',');
+  std::map<std::string, double> input = btcdata::parseFileContent(argv[1], '|');
 
-  std::cout << "DATA: " << std::endl;
-  for (std::map<std::string, double>::iterator it = data.begin();
-       it != data.end(); it++) {
+  std::cout << "DB: " << std::endl;
+  for (std::map<std::string, double>::iterator it = db.begin(); it != db.end();
+       it++) {
     std::cout << it->first << " => " << it->second << std::endl;
   }
 
-  std::cout << std::endl << "BTC VALUE: " << std::endl;
-  for (std::map<std::string, double>::iterator it = btcValue.begin();
-       it != btcValue.end(); it++) {
+  std::cout << std::endl << "INPUT: " << std::endl;
+  for (std::map<std::string, double>::iterator it = input.begin();
+       it != input.end(); it++) {
     std::cout << it->first << " => " << it->second << std::endl;
   }
   return 0;
