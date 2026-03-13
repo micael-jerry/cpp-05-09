@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/12 05:44:39 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/13 06:34:33 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 #define PARSING_ERROR_MSG "Error: Parsing File Error"
 #define NO_SEPARATOR_ERROR_MSG "Error: No Separator Found"
+#define DATE_ERROR_MSG "Error: Invalid Date"
+#define VALUE_ERROR_MSG "Error: Invalid Value"
 
 namespace btcdata {
 std::pair<std::string, double> parseAndValidateLine(std::string line,
@@ -29,7 +31,8 @@ std::map<std::string, double> parseFileContent(const char *filename,
 class parseException : public std::exception {
  public:
   parseException(const char *msg) : _msg(msg){};
-  virtual const char *what() const noexcept override { return _msg.c_str(); }
+  virtual ~parseException() throw() {}
+  virtual const char *what() const throw() { return _msg.c_str(); }
 
  private:
   std::string _msg;
@@ -38,8 +41,8 @@ class parseException : public std::exception {
 
 namespace btcutils {
 std::string trim(const std::string &str);
-bool isValidDate(std::string date);
-bool isValidValue(std::string value);
+bool isValidDateStr(std::string date);
+bool isValidNumber(std::string value);
 }  // namespace btcutils
 
 #endif
