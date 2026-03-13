@@ -3,6 +3,15 @@
 
 #include "../include/iter.hpp"
 
+class Awesome {
+public:
+    Awesome(void) : _n(42) { return; }
+    int get(void) const { return this->_n; }
+private:
+    int _n;
+};
+std::ostream & operator<<(std::ostream & o, Awesome const & rhs) { o << rhs.get(); return o; }
+
 // Non-const integer printing function
 void printInt(int &i) { std::cout << i << " "; }
 
@@ -13,22 +22,24 @@ void printConstInt(int const &i) { std::cout << i << " "; }
 void incrementInt(int &i) { i++; }
 
 // String printing function
-void printString(std::string &s) { std::cout << s << " "; }
+void printString(std::string const &s) { std::cout << s << " "; }
 
-// Template printing function
+// Template printing function (const reference)
 template <typename T>
-void printTemplate(T &x) {
+void printConstTemplate(T const &x) {
   std::cout << "[" << x << "] ";
 }
 
-class Awesome {
-public:
-    Awesome(void) : _n(42) { return; }
-    int get(void) const { return this->_n; }
-private:
-    int _n;
-};
-std::ostream & operator<<(std::ostream & o, Awesome const & rhs) { o << rhs.get(); return o; }
+// Template printing function (non-const reference)
+template <typename T>
+void printNonConstTemplate(T &x) {
+  std::cout << "{" << x << "} ";
+}
+
+template <typename T>
+void print(T const & x) {
+    std::cout << x << " ";
+}
 
 int main(void) {
   std::cout << "=== Test 1: Non-const Integer Array ===" << std::endl;
@@ -41,8 +52,8 @@ int main(void) {
   std::cout << "Incrementing values..." << std::endl;
   iter(intArray, 5, incrementInt);
 
-  std::cout << "Modified: ";
-  iter(intArray, 5, printInt);
+  std::cout << "Modified (print int with printConstInt): ";
+  iter(intArray, 5, printConstInt);
   std::cout << std::endl << std::endl;
 
   std::cout << "=== Test 2: Const Integer Array ===" << std::endl;
@@ -56,20 +67,24 @@ int main(void) {
   std::string strArray[] = {"Hello", "World", "42", "C++"};
 
   std::cout << "Strings: ";
-  iter(strArray, 4, printString);
+  iter(strArray, 4, print<std::string>);
   std::cout << std::endl << std::endl;
 
   std::cout << "=== Test 4: Template Function (Non-const) ===" << std::endl;
-  iter(intArray, 5, printTemplate);
+  iter(intArray, 5, printNonConstTemplate<int>);
   std::cout << std::endl << std::endl;
 
-  std::cout << "=== Test 5: Template Function (Const) ===" << std::endl;
-  iter(constIntArray, 5, printTemplate);
+  std::cout << "=== Test 5: Template Function (Const array) ===" << std::endl;
+  iter(constIntArray, 5, printConstTemplate<int>);
   std::cout << std::endl << std::endl;
 
   std::cout << "=== Test 6: Class Objects ===" << std::endl;
-  Awesome tab[5];
-  iter(tab, 5, printTemplate);
+  int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
+
+  iter(tab, 5, print<int>);
+  std::cout << std::endl;
+  iter(tab2, 5, print<Awesome>);
   std::cout << std::endl;
 
   return 0;
