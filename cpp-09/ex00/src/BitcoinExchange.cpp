@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:26:57 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/13 06:46:12 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/15 18:05:49 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,21 @@ bool btcutils::isValidDateStr(std::string dateStr) {
 }
 
 bool btcutils::isValidNumber(std::string value) {
-  (void)value;
+  unsigned int commaCount = 0;
+
+  for (size_t i = 0; i < value.size(); i++)
+  {
+    if (!std::isdigit(value[i]) && value[i] == '.') {
+      commaCount++;
+    } else {
+      return false;
+    }
+  }
+
+  if (commaCount > 1) {
+    return false;
+  }
+
   return true;
 }
 
