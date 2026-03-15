@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/13 06:34:33 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/15 18:18:44 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 #define NO_SEPARATOR_ERROR_MSG "Error: No Separator Found"
 #define DATE_ERROR_MSG "Error: Invalid Date"
 #define VALUE_ERROR_MSG "Error: Invalid Value"
+
+#define VALUE_MIN 0
+#define VALUE_MAX 1000
 
 namespace btcdata {
 std::pair<std::string, double> parseAndValidateLine(std::string line,
