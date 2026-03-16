@@ -6,27 +6,24 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/15 18:22:27 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/16 06:20:16 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ctime>
 #include <iostream>
 #include <map>
 #include <ostream>
-#include <string>
 
 #include "../include/BitcoinExchange.hpp"
 
-#define DATA_FILE "data/data.csv"
-
-static bool allValueIsValid(std::map<std::string, double> data) {
-  for (std::map<std::string, double>::iterator it = data.begin(); it != data.end(); it++)
-  {
-    if (it->second < VALUE_MIN || it->second > VALUE_MAX) {
-      return false;
-    }
+void view(std::map<std::time_t, double> db,
+          std::map<std::time_t, double> input) {
+  for (std::map<std::time_t, double>::iterator it = input.begin();
+       it != input.end(); it++) {
+    std::pair<std::time_t, double> exchange = btc::getExchangeValueByDate(db, it->first);
+    std::cout << btcutils::timestampToDateStr(it->first) << " => " << it->second << " = " << it->second * exchange.second << std::endl;
   }
-  return true;
 }
 
 int main(int argc, char const *argv[]) {
@@ -35,26 +32,12 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
   try {
-    std::map<std::string, double> db =
+    std::map<std::time_t, double> db =
         btcdata::parseFileContent(DATA_FILE, ',');
-    std::map<std::string, double> input =
-        btcdata::parseFileContent(argv[1], '|');
+    std::map<std::time_t, double> input =
+        btcdata::parseFileContent(argv[1], '|', true);
 
-    if (!allValueIsValid(input)) {
-      throw btcdata::parseException(VALUE_ERROR_MSG);
-    }
-
-    std::cout << "DB: " << std::endl;
-    for (std::map<std::string, double>::iterator it = db.begin();
-         it != db.end(); it++) {
-      std::cout << it->first << " => " << it->second << std::endl;
-    }
-
-    std::cout << std::endl << "INPUT: " << std::endl;
-    for (std::map<std::string, double>::iterator it = input.begin();
-         it != input.end(); it++) {
-      std::cout << it->first << " => " << it->second << std::endl;
-    }
+    view(db, input);
   } catch (btcdata::parseException &e) {
     std::cerr << e.what() << std::endl;
   }

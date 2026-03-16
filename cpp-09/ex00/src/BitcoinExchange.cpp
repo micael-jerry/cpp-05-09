@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:26:57 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/15 18:05:49 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/16 06:21:13 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
@@ -28,9 +29,9 @@ std::string btcutils::trim(const std::string &str) {
   return str.substr(start, end - start);
 }
 
-bool btcutils::isValidDateStr(std::string dateStr) {
+std::time_t btcutils::dateStrToTimestamp(std::string dateStr) {
   if ((dateStr.length() != 10) || (dateStr[4] != '-' || dateStr[7] != '-')) {
-    return false;
+    return -1;
   }
 
   int year, month, day;
@@ -39,7 +40,7 @@ bool btcutils::isValidDateStr(std::string dateStr) {
   std::istringstream ssDay(dateStr.substr(8, 2));
 
   if (!(ssYear >> year) || !(ssMonth >> month) || !(ssDay >> day)) {
-    return false;
+    return -1;
   }
 
   std::tm tm = std::tm();
@@ -47,16 +48,21 @@ bool btcutils::isValidDateStr(std::string dateStr) {
   tm.tm_mon = month - 1;
   tm.tm_mday = day;
 
-  std::time_t date = mktime(&tm);
-  if (date == -1) {
+  return mktime(&tm);
+}
+
+std::string btcutils::timestampToDateStr(std::time_t timestamp) {
+  char buffer[11];
+  std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", std::localtime(&timestamp));
+  return std::string(buffer);
+}
+
+bool btcutils::isValidDate(std::string dateStr, std::time_t timestamp) {
+  if (timestamp == -1) {
     return false;
   }
 
-  char buffer[11];
-  std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", std::localtime(&date));
-  std::string normalizedDate(buffer);
-
-  if (normalizedDate != dateStr) {
+  if (timestampToDateStr(timestamp) != dateStr) {
     return false;
   }
   return true;
@@ -65,12 +71,11 @@ bool btcutils::isValidDateStr(std::string dateStr) {
 bool btcutils::isValidNumber(std::string value) {
   unsigned int commaCount = 0;
 
-  for (size_t i = 0; i < value.size(); i++)
-  {
-    if (!std::isdigit(value[i]) && value[i] == '.') {
-      commaCount++;
-    } else {
+  for (size_t i = 0; i < value.size(); i++) {
+    if (!std::isdigit(value[i]) && value[i] != '.') {
       return false;
+    } else if (value[i] == '.') {
+      commaCount++;
     }
   }
 
@@ -81,8 +86,9 @@ bool btcutils::isValidNumber(std::string value) {
   return true;
 }
 
-std::pair<std::string, double> btcdata::parseAndValidateLine(std::string line,
-                                                             char separator) {
+std::pair<std::time_t, double> btcdata::parseAndValidateLine(std::string line,
+                                                             char separator,
+                                                             bool isInput) {
   size_t separatorPos = line.find(separator);
 
   if (separatorPos == std::string::npos) {
@@ -90,21 +96,28 @@ std::pair<std::string, double> btcdata::parseAndValidateLine(std::string line,
   }
 
   std::string key = btcutils::trim(line.substr(0, separatorPos));
-  std::string value = btcutils::trim(line.substr(separatorPos + 1));
+  std::string valueStr = btcutils::trim(line.substr(separatorPos + 1));
 
-  if (!btcutils::isValidDateStr(key)) {
+  std::time_t timestamp = btcutils::dateStrToTimestamp(key);
+
+  if (!btcutils::isValidDate(key, timestamp)) {
     throw btcdata::parseException(DATE_ERROR_MSG);
   }
-  if (!btcutils::isValidNumber(value)) {
-    throw btcdata::parseException(VALUE_ERROR_MSG);
+  if (!btcutils::isValidNumber(valueStr)) {
+    throw btcdata::parseException(isInput ? BTC_QUANTITY_ERROR_MSG
+                                          : PRICE_ERROR_MSG);
   }
+  const double value = std::strtod(valueStr.c_str(), NULL);
 
-  return std::make_pair(key, std::strtod(value.c_str(), NULL));
+  if (isInput && (value < BTC_MIN || value > BTC_MAX)) {
+    throw btcdata::parseException(BTC_QUANTITY_ERROR_MSG);
+  }
+  return std::make_pair(timestamp, value);
 }
 
-std::map<std::string, double> btcdata::parseFileContent(
-    const char *filename, char dateAndValueSeparator) {
-  std::map<std::string, double> data;
+std::map<std::time_t, double> btcdata::parseFileContent(
+    const char *filename, char dateAndValueSeparator, bool isInput) {
+  std::map<std::time_t, double> data;
   std::ifstream file(filename);
 
   if (!file.is_open()) {
@@ -112,12 +125,29 @@ std::map<std::string, double> btcdata::parseFileContent(
   }
 
   std::string line;
-  std::getline(file, line);
+  std::getline(file, line); // INFO: REMOVE HEADERS
   while (std::getline(file, line)) {
-    const std::pair<std::string, double> parsedLine =
-        btcdata::parseAndValidateLine(line, dateAndValueSeparator);
+    const std::pair<std::time_t, double> parsedLine =
+        btcdata::parseAndValidateLine(line, dateAndValueSeparator, isInput);
     data[parsedLine.first] = parsedLine.second;
   }
   file.close();
   return data;
+}
+
+std::pair<std::time_t, double> btc::getExchangeValueByDate(
+    std::map<std::time_t, double> db, std::time_t date) {
+  for (std::map<std::time_t, double>::iterator it = db.begin(); it != db.end();
+       it++) {
+    if (it->first == date) {
+      return *it;
+    } else if ((it->first > date)) {
+      if (it == db.begin()) {
+        return *it;
+      }
+      it--;
+      return *it;
+    }
+  }
+  return std::make_pair(0, 0);
 }
