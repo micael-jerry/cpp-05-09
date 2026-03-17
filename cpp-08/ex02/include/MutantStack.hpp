@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 06:13:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/22 08:43:02 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/17 21:51:45 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ class MutantStack : public std::stack<T, Container> {
 
   iterator begin();
   iterator end();
+
+  const_iterator begin() const;
+  const_iterator end() const;
 
   const_iterator cbegin() const;
   const_iterator cend() const;
