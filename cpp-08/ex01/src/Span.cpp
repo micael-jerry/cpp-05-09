@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 21:17:37 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/22 22:28:55 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/16 20:03:25 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iterator>
-#include <limits>
 #include <vector>
 
 Span::Span() : _size(0) {}
