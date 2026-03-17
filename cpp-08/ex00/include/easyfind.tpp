@@ -25,3 +25,14 @@ typename T::iterator easyfind(T &container, int toFind) {
   }
   return it;
 }
+
+template <typename T>
+typename T::const_iterator easyfind(const T &container, int toFind) {
+  typename T::const_iterator it =
+      std::find(container.begin(), container.end(), toFind);
+
+  if (it == container.end()) {
+    throw NotFoundException();
+  }
+  return it;
+}

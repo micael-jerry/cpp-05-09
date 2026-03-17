@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 07:11:05 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/08 08:24:47 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/17 21:28:25 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ class NotFoundException : public std::exception {
 
 template <typename T>
 typename T::iterator easyfind(T& container, int value);
+
+
+template <typename T>
+typename T::const_iterator easyfind(const T& container, int value);
 
 #include "easyfind.tpp"
 
