@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:26:57 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/16 06:21:13 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/17 05:55:29 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ bool btcutils::isValidNumber(std::string value) {
 }
 
 std::pair<std::time_t, double> btcdata::parseAndValidateLine(std::string line,
-                                                             char separator,
-                                                             bool isInput) {
+                                                             char separator) {
   size_t separatorPos = line.find(separator);
 
   if (separatorPos == std::string::npos) {
@@ -104,19 +103,15 @@ std::pair<std::time_t, double> btcdata::parseAndValidateLine(std::string line,
     throw btcdata::parseException(DATE_ERROR_MSG);
   }
   if (!btcutils::isValidNumber(valueStr)) {
-    throw btcdata::parseException(isInput ? BTC_QUANTITY_ERROR_MSG
-                                          : PRICE_ERROR_MSG);
+    throw btcdata::parseException(INVALID_NUMBER_MSG);
   }
   const double value = std::strtod(valueStr.c_str(), NULL);
 
-  if (isInput && (value < BTC_MIN || value > BTC_MAX)) {
-    throw btcdata::parseException(BTC_QUANTITY_ERROR_MSG);
-  }
   return std::make_pair(timestamp, value);
 }
 
 std::map<std::time_t, double> btcdata::parseFileContent(
-    const char *filename, char dateAndValueSeparator, bool isInput) {
+    const char *filename, char dateAndValueSeparator) {
   std::map<std::time_t, double> data;
   std::ifstream file(filename);
 
@@ -125,10 +120,10 @@ std::map<std::time_t, double> btcdata::parseFileContent(
   }
 
   std::string line;
-  std::getline(file, line); // INFO: REMOVE HEADERS
+  std::getline(file, line);  // INFO: REMOVE HEADERS
   while (std::getline(file, line)) {
     const std::pair<std::time_t, double> parsedLine =
-        btcdata::parseAndValidateLine(line, dateAndValueSeparator, isInput);
+        btcdata::parseAndValidateLine(line, dateAndValueSeparator);
     data[parsedLine.first] = parsedLine.second;
   }
   file.close();
@@ -143,11 +138,11 @@ std::pair<std::time_t, double> btc::getExchangeValueByDate(
       return *it;
     } else if ((it->first > date)) {
       if (it == db.begin()) {
-        return *it;
+        return std::make_pair(0, TOO_LOW_DATE);
       }
       it--;
       return *it;
     }
   }
-  return std::make_pair(0, 0);
+  return std::make_pair(PAIR_KEY_ERROR, TOO_LARGE_DATE);
 }
