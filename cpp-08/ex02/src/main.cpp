@@ -94,6 +94,29 @@ int main(void) {
     }
     std::cout << std::endl;
   }
+
+  std::cout << "\n========== TEST 4: CONST REVERSE ITERATOR ==========" << std::endl;
+  {
+    MutantStack<int> mstack;
+    for (int i = 1; i <= 5; i++) mstack.push(i);
+    const MutantStack<int> const_mstack = mstack;
+    std::cout << "Const reverse iterator (top to bottom): ";
+    for (MutantStack<int>::const_reverse_iterator crit = const_mstack.rbegin(); crit != const_mstack.rend(); ++crit) {
+        std::cout << *crit << " ";
+    }
+    std::cout << std::endl;
+  }
+
+  std::cout << "\n========== TEST 5: STD::STACK METHODS ==========" << std::endl;
+  {
+    MutantStack<int> stackMethods;
+    std::cout << "Is empty initially? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+    stackMethods.push(99);
+    std::cout << "Pushed 99. Is empty? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+    std::cout << "Size: " << stackMethods.size() << std::endl;
+    stackMethods.pop();
+    std::cout << "Popped. Is empty? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+  }
   std::cout << std::endl;
 
   return 0;
