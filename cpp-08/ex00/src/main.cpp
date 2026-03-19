@@ -89,6 +89,28 @@ int main(void) {
     printContainer(emptyVec, "Empty Vector");
     testEasyFind(emptyVec, 1); // Should fail
   }
+
+  {
+    std::cout << "\n========== TEST WITH DUPLICATES AND MUTATION ==========" << std::endl;
+    std::vector<int> vec;
+    vec.push_back(10);
+    vec.push_back(20);
+    vec.push_back(30);
+    vec.push_back(20);
+    vec.push_back(40);
+    printContainer(vec, "Vector with duplicates");
+    try {
+      std::cout << "Searching for 20 (should return first occurrence)... ";
+      std::vector<int>::iterator result = easyfind(vec, 20);
+      std::cout << "\033[32mFound!\033[0m Value: " << *result << std::endl;
+      
+      std::cout << "Mutating the found value to 42..." << std::endl;
+      *result = 42;
+      printContainer(vec, "Vector after mutation");
+    } catch (std::exception& e) {
+      std::cout << "\033[31mError:\033[0m " << e.what() << std::endl;
+    }
+  }
   std::cout << std::endl;
 
   return 0;

@@ -102,5 +102,21 @@ int main() {
     std::cout << "Error: " << e.what() << std::endl;
   }
 
+  std::cout << "\n========== TEST 5: EDGE CASES (NEGATIVES & DUPLICATES) ==========" << std::endl;
+  try {
+    Span edgeSpan(5);
+    edgeSpan.addNumber(-100);
+    edgeSpan.addNumber(-50);
+    edgeSpan.addNumber(50);
+    edgeSpan.addNumber(100);
+    edgeSpan.addNumber(100); // Duplicate
+    
+    std::cout << "Span with (-100, -50, 50, 100, 100):" << std::endl;
+    std::cout << "- Shortest: " << edgeSpan.shortestSpan() << " (Expected: 0)" << std::endl;
+    std::cout << "- Longest: " << edgeSpan.longestSpan() << " (Expected: 200)" << std::endl;
+  } catch (std::exception &e) {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
+
   return 0;
 }
