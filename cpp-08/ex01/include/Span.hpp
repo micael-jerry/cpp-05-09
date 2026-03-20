@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 16:21:06 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/02/18 22:33:45 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/20 06:42:53 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ class Span {
   Span &operator=(Span const &span);
 
   void addNumber(int const &number);
-  void addNumber(std::vector<int>::iterator start,
-                 std::vector<int>::iterator end);
+  template<typename Tit>
+  void addNumber(Tit start, Tit end) {
+  if (this->_contents.size() + std::distance(start, end) > this->_size) {
+    throw Span::OutOfRangeException();
+  }
+  this->_contents.insert(this->_contents.end(), start, end);
+  }
+
   int shortestSpan() const;
   int longestSpan() const;
 

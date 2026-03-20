@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 21:17:37 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/16 20:03:25 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/20 06:42:03 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ void Span::addNumber(int const &number) {
     throw Span::OutOfRangeException();
   }
   this->_contents.push_back(number);
-}
-
-void Span::addNumber(std::vector<int>::iterator start,
-                     std::vector<int>::iterator end) {
-  if (this->_contents.size() + std::distance(start, end) > this->_size) {
-    throw Span::OutOfRangeException();
-  }
-  this->_contents.insert(this->_contents.end(), start, end);
 }
 
 int Span::shortestSpan() const {
