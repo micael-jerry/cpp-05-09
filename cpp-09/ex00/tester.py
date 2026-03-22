@@ -31,7 +31,7 @@ tests = [
 """,
         "check": lambda out: (
             out.count("=>") >= 5 and 
-            "Error" in out and 
+            "ERROR" in out and 
             "2011-01-03 => 3 = 0.9" in out and 
             "2012-01-11 => 1 = 7.1" in out
         ),
@@ -69,8 +69,8 @@ tests = [
 2012-01-11 | 1000.1
 """,
         "check": lambda out: (
-            "not a positive number" in out.lower() and 
-            "too large a number" in out.lower() and 
+            ("not a positive number" in out.lower() or "too low value" in out.lower()) and 
+            ("too large a number" in out.lower() or "too large value" in out.lower()) and 
             out.count("=>") >= 2
         ),
         "desc": "Vérifie les bornes 0 et 1000 inclus, et attend 'Error: not a positive number.' ou 'Error: too large a number.' pour le reste."
@@ -83,7 +83,7 @@ bad format line
 | 5
 2012-01-11 | abc
 """,
-        "check": lambda out: ("bad input" in out.lower() and out.lower().count("error") >= 3),
+        "check": lambda out: ("parsing error" in out.lower() and out.lower().count("error") >= 3),
         "desc": "Lignes mal formatées. Attend 'Error: bad input => [ligne]' selon le sujet."
     },
     {

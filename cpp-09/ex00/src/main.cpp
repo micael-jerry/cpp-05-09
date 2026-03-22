@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/22 09:14:15 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/22 15:48:06 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void view(std::pair<std::time_t, double> pair,
   std::pair<std::time_t, double> exchange =
       btc::getExchangeValueByDate(db, pair.first);
 
-  std::cout << btcutils::timestampToDateStr(exchange.first) << " => "
+  std::cout << btcutils::timestampToDateStr(pair.first) << " => "
             << pair.second << " = " << exchange.second * pair.second
             << std::endl;
 }
