@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/22 08:22:10 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/22 09:14:15 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,9 @@ void view(std::pair<std::time_t, double> pair,
   std::pair<std::time_t, double> exchange =
       btc::getExchangeValueByDate(db, pair.first);
 
-  if (exchange.first < 0) {
-    if (exchange.second == TOO_LOW_DATE) {
-      throw btc::btcException(TOO_LOW_DATE_ERROR_MSG);
-    } else if (exchange.second == TOO_LARGE_DATE) {
-      throw btc::btcException(TOO_LARGE_DATE_ERROR_MSG);
-    }
-  } else {
-    std::cout << btcutils::timestampToDateStr(exchange.first) << " => "
-              << pair.second << " = " << exchange.second * pair.second
-              << std::endl;
-  }
+  std::cout << btcutils::timestampToDateStr(exchange.first) << " => "
+            << pair.second << " = " << exchange.second * pair.second
+            << std::endl;
 }
 
 void convert(const char *filename, std::map<std::time_t, double> db) {
@@ -57,7 +49,7 @@ void convert(const char *filename, std::map<std::time_t, double> db) {
   while (std::getline(file, line)) {
     try {
       const std::pair<std::time_t, double> parsedLine =
-          btcdata::parseAndValidateLine(line, DB_KEY_VAL_SEPARATOR);
+          btcdata::parseAndValidateLine(line, INPUT_KEY_VAL_SEPARATOR);
       view(parsedLine, db);
     } catch (std::exception &e) {
       std::cerr << e.what() << std::endl;
