@@ -6,45 +6,64 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/17 06:00:08 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/22 08:22:10 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ctime>
+#include <exception>
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <ostream>
+#include <utility>
 
 #include "../include/BitcoinExchange.hpp"
 
-void view(std::map<std::time_t, double> db,
-          std::map<std::time_t, double> input) {
-  for (std::map<std::time_t, double>::iterator it = input.begin();
-       it != input.end(); it++) {
-    if (it->second < BTC_MIN) {
-      std::cerr << TOO_LOW_VALUE_ERROR_MSG << std::endl;
-      continue;
-    }
-    if (it->second > BTC_MAX) {
-      std::cerr << TOO_LARGE_VALUE_ERROR_MSG << std::endl;
-      continue;
-    }
+void view(std::pair<std::time_t, double> pair,
+          std::map<std::time_t, double> db) {
+  if (pair.second < BTC_MIN) {
+    throw btc::btcException(TOO_LOW_VALUE_ERROR_MSG);
+  }
+  if (pair.second > BTC_MAX) {
+    throw btc::btcException(TOO_LARGE_VALUE_ERROR_MSG);
+  }
 
-    std::pair<std::time_t, double> exchange =
-        btc::getExchangeValueByDate(db, it->first);
+  std::pair<std::time_t, double> exchange =
+      btc::getExchangeValueByDate(db, pair.first);
 
-    if (exchange.first == PAIR_KEY_ERROR) {
-      if (exchange.second == TOO_LOW_DATE) {
-        std::cerr << TOO_LOW_DATE_ERROR_MSG << std::endl;
-      } else if (exchange.second == TOO_LARGE_DATE) {
-        std::cerr << TOO_LARGE_DATE_ERROR_MSG << std::endl;
-      }
-    } else {
-      std::cout << btcutils::timestampToDateStr(exchange.first) << " => "
-                << it->second << " = " << it->second * exchange.second
-                << std::endl;
+  if (exchange.first < 0) {
+    if (exchange.second == TOO_LOW_DATE) {
+      throw btc::btcException(TOO_LOW_DATE_ERROR_MSG);
+    } else if (exchange.second == TOO_LARGE_DATE) {
+      throw btc::btcException(TOO_LARGE_DATE_ERROR_MSG);
+    }
+  } else {
+    std::cout << btcutils::timestampToDateStr(exchange.first) << " => "
+              << pair.second << " = " << exchange.second * pair.second
+              << std::endl;
+  }
+}
+
+void convert(const char *filename, std::map<std::time_t, double> db) {
+  std::ifstream file(filename);
+
+  if (!file.is_open()) {
+    throw btcdata::parseException(PARSING_ERROR_MSG);
+  }
+
+  std::string line;
+  std::getline(file, line);  // INFO: REMOVE HEADERS
+  while (std::getline(file, line)) {
+    try {
+      const std::pair<std::time_t, double> parsedLine =
+          btcdata::parseAndValidateLine(line, DB_KEY_VAL_SEPARATOR);
+      view(parsedLine, db);
+    } catch (std::exception &e) {
+      std::cerr << e.what() << std::endl;
     }
   }
+  file.close();
 }
 
 int main(int argc, char const *argv[]) {
@@ -53,12 +72,8 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
   try {
-    std::map<std::time_t, double> db =
-        btcdata::parseFileContent(DATA_FILE, ',');
-    std::map<std::time_t, double> input =
-        btcdata::parseFileContent(argv[1], '|');
-
-    view(db, input);
+    std::map<std::time_t, double> db = btcdata::parseFileDb(DATA_FILE);
+    convert(argv[1], db);
   } catch (btcdata::parseException &e) {
     std::cerr << e.what() << std::endl;
   }
