@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 04:35:55 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/24 05:01:22 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/24 05:26:09 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 
 #include <exception>
 #include <string>
+#include <vector>
 
 #define MATH_OPERATION "+-/*"
 
-namespace validator {
-void isValidRPN(const std::string &params);
+namespace parse {
+std::vector<char> parseRPNParams(const std::string &params);
 
-class ValidatorException : public std::exception {
+class ParseException : public std::exception {
  public:
-  ValidatorException(const std::string &msg) : _msg("RPN ERROR: " + msg) {}
-  virtual ~ValidatorException() throw() {}
+  ParseException(const std::string &msg) : _msg("RPN ERROR: " + msg) {}
+  virtual ~ParseException() throw() {}
   virtual const char *what() const throw() { return _msg.c_str(); }
 
  private:
   std::string _msg;
 };
-}  // namespace validator
+}  // namespace parse
 
 #endif

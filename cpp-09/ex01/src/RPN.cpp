@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 04:35:34 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/24 05:11:02 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/24 05:26:09 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 #include <cctype>
 #include <cstddef>
+#include <vector>
 
-void validator::isValidRPN(const std::string &params) {
+std::vector<char> parse::parseRPNParams(const std::string &params) {
   std::string mathOperation = std::string(MATH_OPERATION);
   size_t len = params.length();
+  std::vector<char> res;
 
   for (size_t i = 0; i < len; i++) {
     if (params[i] == ' ') {
@@ -27,11 +29,13 @@ void validator::isValidRPN(const std::string &params) {
         mathOperation.find(params[i]) != std::string::npos) {
       if (len > 1 && ((i > 0 && params[i - 1] != ' ') ||
                       (i < len - 1 && params[i + 1] != ' '))) {
-        throw validator::ValidatorException(
+        throw parse::ParseException(
             "Each character must be separated by a space");
       }
+      res.push_back(params[i]);
     } else {
-      throw validator::ValidatorException("Invalid character");
+      throw parse::ParseException("Invalid character");
     }
   }
+  return res;
 }
