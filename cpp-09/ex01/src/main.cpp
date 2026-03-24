@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 04:25:36 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/24 05:27:13 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/24 06:51:19 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int main(int argc, const char *argv[]) {
     return 1;
   }
   try {
-    const std::vector<char> tokens = parse::parseRPNParams(argv[1]);
+    rpn::rpnParamsValidator(argv[1]);
 
-  } catch (const parse::ParseException &e) {
+  } catch (const rpn::RPNException &e) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
