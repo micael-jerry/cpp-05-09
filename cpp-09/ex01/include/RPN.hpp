@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 04:35:55 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/24 06:51:19 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/25 05:45:59 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 namespace rpn {
 void rpnParamsValidator(const std::string &params);
 int rpn(const std::string &tokens);
+int rpnOperation(int firstOperand, int secondOperand, char operation);
 
 class RPNException : public std::exception {
  public:
-  RPNException(const std::string &msg) : _msg("RPN ERROR: " + msg) {}
+  RPNException(const std::string &msg) : _msg("ERROR: " + msg) {}
   virtual ~RPNException() throw() {}
   virtual const char *what() const throw() { return _msg.c_str(); }
 
