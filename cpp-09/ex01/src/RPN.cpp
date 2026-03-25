@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 04:35:34 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/25 05:39:44 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/25 05:54:05 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ int rpn::rpnOperation(int firstOperand, int secondOperand, char operation) {
     case '-':
       return firstOperand - secondOperand;
     case '/':
+      if (secondOperand == 0) {
+        throw rpn::RPNException("Division by zero");
+      }
       return firstOperand / secondOperand;
     case '*':
       return firstOperand * secondOperand;
