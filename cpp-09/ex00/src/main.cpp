@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/22 15:48:06 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/27 05:58:34 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void view(std::pair<std::time_t, double> pair,
   std::pair<std::time_t, double> exchange =
       btc::getExchangeValueByDate(db, pair.first);
 
-  std::cout << btcutils::timestampToDateStr(pair.first) << " => "
-            << pair.second << " = " << exchange.second * pair.second
-            << std::endl;
+  std::cout << btcutils::timestampToDateStr(pair.first) << " => " << pair.second
+            << " = " << exchange.second * pair.second << std::endl;
 }
 
 void convert(const char *filename, std::map<std::time_t, double> db) {
@@ -60,7 +59,7 @@ void convert(const char *filename, std::map<std::time_t, double> db) {
 
 int main(int argc, char const *argv[]) {
   if (argc != 2) {
-    std::cerr << "Invalid args" << std::endl;
+    std::cerr << "ERROR: Invalid args" << std::endl;
     return 1;
   }
   try {

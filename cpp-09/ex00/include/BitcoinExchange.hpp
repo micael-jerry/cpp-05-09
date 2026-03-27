@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/22 09:12:45 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/27 06:12:17 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ std::pair<std::time_t, double> parseAndValidateLine(std::string line,
 std::map<std::time_t, double> parseFileDb(const char *filename);
 
 class parseException : public std::exception {
+ private:
+  std::string _msg;
+
  public:
   parseException(std::string msg) : _msg("PARSING ERROR: " + msg){};
   virtual ~parseException() throw() {}
   virtual const char *what() const throw() { return _msg.c_str(); }
-
- private:
-  std::string _msg;
 };
 }  // namespace btcdata
 
@@ -64,13 +64,13 @@ std::pair<std::time_t, double> getExchangeValueByDate(
     std::map<std::time_t, double> db, std::time_t date);
 
 class btcException : public std::exception {
+ private:
+  std::string _msg;
+
  public:
   btcException(std::string msg) : _msg("BTC ERROR: " + msg){};
   virtual ~btcException() throw() {}
   virtual const char *what() const throw() { return _msg.c_str(); }
-
- private:
-  std::string _msg;
 };
 }  // namespace btc
 
