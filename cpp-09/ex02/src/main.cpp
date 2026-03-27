@@ -5,24 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 04:25:36 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/27 06:19:27 by mfidimal         ###   ########.fr       */
+/*   Created: 2026/03/27 05:52:34 by mfidimal          #+#    #+#             */
+/*   Updated: 2026/03/27 06:47:21 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <vector>
 
-#include "../include/RPN.hpp"
+#include "../include/PmergeMe.hpp"
 
 int main(int argc, const char *argv[]) {
-  if (argc != 2) {
-    std::cerr << "ERROR: invalid arguments" << std::endl;
-    return 1;
+  if (argc == 1) {
+    return 0;
   }
   try {
-    rpn::rpnParamsValidator(argv[1]);
-    std::cout << rpn::rpn(argv[1]) << std::endl;
-  } catch (const RPNException &e) {
+    pMergeMe::argsValidator(argc, argv);
+    std::vector<long> container = pMergeMe::parseArgs(argc, argv);
+    (void) container;
+  } catch (const PmergeMeException &e) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
