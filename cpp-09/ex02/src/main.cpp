@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:52:34 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/27 06:47:21 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/03/28 20:19:55 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../include/PmergeMe.hpp"
 
 int main(int argc, const char *argv[]) {
-  if (argc == 1) {
+  if (argc <= 2) {
     return 0;
   }
   try {
