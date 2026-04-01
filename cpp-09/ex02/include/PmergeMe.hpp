@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:59:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/28 20:36:27 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/01 05:40:04 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void argsValidator(int ac, const char *av[]);
 std::vector<long> parseArgs(int ac, const char *av[]);
 void printContainer(const std::vector<long> &container);
 
+void sortPairs(std::vector<std::pair<long, long> > &pairs);
 void mergeInsertSort(std::vector<long> &container);
 }  // namespace pMergeMe
 

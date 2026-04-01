@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/29 16:19:52 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/01 05:40:58 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,45 @@ void pMergeMe::printContainer(const std::vector<long> &container) {
   std::cout << std::endl;
 }
 
-void sortPairs(std::vector<std::pair<long, long> > &pairs) {
+void pMergeMe::sortPairs(std::vector<std::pair<long, long> > &pairs) {
   if (pairs.size() <= 1) {
     return;
   }
 
-  // MERGE SORTE
+  size_t mid = pairs.size() / 2;
+
+  std::vector<std::pair<long, long> > leftPairs(pairs.begin(),
+                                                pairs.begin() + mid);
+  std::vector<std::pair<long, long> > rightPairs(pairs.begin() + mid,
+                                                 pairs.end());
+
+  sortPairs(leftPairs);
+  sortPairs(rightPairs);
+
+  size_t i = 0, j = 0, k = 0;
+
+  while (i < leftPairs.size() && j < rightPairs.size()) {
+    if (leftPairs[i].second <= rightPairs[j].second) {
+      pairs[k] = leftPairs[i];
+      i++;
+    } else {
+      pairs[k] = rightPairs[j];
+      j++;
+    }
+    k++;
+  }
+
+  while (i < leftPairs.size()) {
+    pairs[k] = leftPairs[i];
+    i++;
+    k++;
+  }
+
+  while (j < rightPairs.size()) {
+    pairs[k] = rightPairs[j];
+    j++;
+    k++;
+  }
 }
 
 void pMergeMe::mergeInsertSort(std::vector<long> &container) {
@@ -68,6 +101,7 @@ void pMergeMe::mergeInsertSort(std::vector<long> &container) {
   }
 
   std::vector<std::pair<long, long> > pairContainer;
+
   for (size_t i = 0; i < container.size() - 1; i += 2) {
     if (container[i] > container[i + 1]) {
       pairContainer.push_back(std::make_pair(container[i + 1], container[i]));
@@ -75,4 +109,6 @@ void pMergeMe::mergeInsertSort(std::vector<long> &container) {
       pairContainer.push_back(std::make_pair(container[i], container[i + 1]));
     }
   }
+
+  pMergeMe::sortPairs(pairContainer);
 }
