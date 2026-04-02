@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:59:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/01 05:40:04 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/02 05:28:00 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <exception>
 #include <string>
+#include <utility>
 #include <vector>
 
 class PmergeMeException : public std::exception {
@@ -33,8 +34,15 @@ void argsValidator(int ac, const char *av[]);
 std::vector<long> parseArgs(int ac, const char *av[]);
 void printContainer(const std::vector<long> &container);
 
+std::vector<std::pair<long, long> > extractPairs(
+    const std::vector<long> &container);
 void sortPairs(std::vector<std::pair<long, long> > &pairs);
-void mergeInsertSort(std::vector<long> &container);
+std::pair<std::vector<long>, std::vector<long> > extractMainAndPendingChain(
+    std::vector<std::pair<long, long> > pairs);
+std::vector<long> insertPendingElements(std::vector<long> mainChain,
+                                        std::vector<long> pendingChain,
+                                        long struggler);
+std::vector<long> mergeInsertSort(std::vector<long> &container);
 }  // namespace pMergeMe
 
 #endif

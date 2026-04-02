@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/01 05:40:58 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/02 05:28:10 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ void pMergeMe::printContainer(const std::vector<long> &container) {
   std::cout << std::endl;
 }
 
+std::vector<std::pair<long, long> > pMergeMe::extractPairs(
+    const std::vector<long> &container) {
+  std::vector<std::pair<long, long> > pairsContainer;
+
+  for (size_t i = 0; i < container.size() - 1; i += 2) {
+    if (container[i] > container[i + 1]) {
+      pairsContainer.push_back(std::make_pair(container[i + 1], container[i]));
+    } else {
+      pairsContainer.push_back(std::make_pair(container[i], container[i + 1]));
+    }
+  }
+
+  return pairsContainer;
+}
+
 void pMergeMe::sortPairs(std::vector<std::pair<long, long> > &pairs) {
   if (pairs.size() <= 1) {
     return;
@@ -91,7 +106,34 @@ void pMergeMe::sortPairs(std::vector<std::pair<long, long> > &pairs) {
   }
 }
 
-void pMergeMe::mergeInsertSort(std::vector<long> &container) {
+std::pair<std::vector<long>, std::vector<long> >
+pMergeMe::extractMainAndPendingChain(
+    std::vector<std::pair<long, long> > pairs) {
+  std::vector<long> mainChain;
+  std::vector<long> secondChain;
+
+  std::vector<std::pair<long, long> >::iterator it = pairs.begin();
+
+  mainChain.push_back(it->first);
+  mainChain.push_back(it->second);
+  it++;
+
+  while (it != pairs.end()) {
+    mainChain.push_back(it->second);
+    secondChain.push_back(it->first);
+    it++;
+  }
+
+  return std::make_pair(mainChain, secondChain);
+}
+
+std::vector<long> pMergeMe::insertPendingElements(
+    std::vector<long> mainChain, std::vector<long> pendingChain,
+    long struggler) {
+  return mainChain;
+}
+
+std::vector<long> pMergeMe::mergeInsertSort(std::vector<long> &container) {
   long struggler = -1;
   (void)struggler;
 
@@ -100,15 +142,13 @@ void pMergeMe::mergeInsertSort(std::vector<long> &container) {
     container.pop_back();
   }
 
-  std::vector<std::pair<long, long> > pairContainer;
+  std::vector<std::pair<long, long> > pairsContainer =
+      pMergeMe::extractPairs(container);
+  pMergeMe::sortPairs(pairsContainer);
 
-  for (size_t i = 0; i < container.size() - 1; i += 2) {
-    if (container[i] > container[i + 1]) {
-      pairContainer.push_back(std::make_pair(container[i + 1], container[i]));
-    } else {
-      pairContainer.push_back(std::make_pair(container[i], container[i + 1]));
-    }
-  }
+  std::pair<std::vector<long>, std::vector<long> > mainAndSecondChain =
+      pMergeMe::extractMainAndPendingChain(pairsContainer);
 
-  pMergeMe::sortPairs(pairContainer);
+  return pMergeMe::insertPendingElements(mainAndSecondChain.first,
+                                         mainAndSecondChain.second, struggler);
 }
