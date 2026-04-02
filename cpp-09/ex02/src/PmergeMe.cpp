@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/02 06:39:57 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:48:30 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ pMergeMe::extractMainAndPendingChain(
 std::vector<long> pMergeMe::insertPendingElements(
     std::vector<long> mainChain, std::vector<long> pendingChain,
     long struggler) {
+  // TODO: INSERT ORDER USING JACKOBSTHAL
   for (size_t i = 0; i < pendingChain.size(); i++) {
     std::vector<long>::iterator it =
         std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[i]);
