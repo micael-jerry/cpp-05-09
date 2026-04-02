@@ -6,12 +6,14 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:59:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/02 05:28:00 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:39:20 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
+
+#define NO_STRUGGLER -1
 
 #include <exception>
 #include <string>

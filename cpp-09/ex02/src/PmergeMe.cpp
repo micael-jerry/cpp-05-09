@@ -6,12 +6,13 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/02 05:28:10 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:39:57 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
+#include <algorithm>
 #include <cctype>
 #include <cstddef>
 #include <cstdlib>
@@ -130,12 +131,21 @@ pMergeMe::extractMainAndPendingChain(
 std::vector<long> pMergeMe::insertPendingElements(
     std::vector<long> mainChain, std::vector<long> pendingChain,
     long struggler) {
+  for (size_t i = 0; i < pendingChain.size(); i++) {
+    std::vector<long>::iterator it =
+        std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[i]);
+    mainChain.insert(it, pendingChain[i]);
+  }
+  if (struggler != NO_STRUGGLER) {
+    std::vector<long>::iterator it =
+        std::lower_bound(mainChain.begin(), mainChain.end(), struggler);
+    mainChain.insert(it, struggler);
+  }
   return mainChain;
 }
 
 std::vector<long> pMergeMe::mergeInsertSort(std::vector<long> &container) {
-  long struggler = -1;
-  (void)struggler;
+  long struggler = NO_STRUGGLER;
 
   if (container.size() % 2 != 0) {
     struggler = container.back();
