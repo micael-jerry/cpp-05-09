@@ -16,3 +16,4 @@ This module is designed to help you understand containers in C++.
 - [Merge-insertion sort](https://en.wikipedia.org/wiki/Merge-insertion_sort)
 - [Ford-Johnson Algorithm: Human Explanation & Visualisation](https://dev.to/emuminov/human-explanation-and-step-by-step-visualisation-of-the-ford-johnson-algorithm-5g91)
 - [Merge Sort](https://www.geeksforgeeks.org/dsa/merge-sort/)
+- [The art of computer programming vol 3](./docs/Art%20of%20Computer%20Programming%20-%20Volume%203%20(Sorting%20&%20Searching).pdf)

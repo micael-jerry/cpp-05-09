@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/03 06:06:42 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/03 06:27:18 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,19 +147,18 @@ std::vector<long> pMergeMe::insertPendingElements(
   if (curr > pendingChain.size()) {
     curr = pendingChain.size() - 1;
   }
-  // TODO: CONDITION DE NEXT ET D'ARRET
-  while (curr >= prev && prev < pendingChain.size()) {
+  while (prev < pendingChain.size()) {
     std::vector<long>::iterator it = std::lower_bound(
         mainChain.begin(), mainChain.end(), pendingChain[curr]);
     mainChain.insert(it, pendingChain[curr]);
     if (curr == prev) {
+      prev = pMergeMe::getJacobsthalNumber(curJacobthalIndex);
       curJacobthalIndex++;
-      prev = curr;
       curr = pMergeMe::getJacobsthalNumber(curJacobthalIndex) - 1;
       if (curr > pendingChain.size()) {
         curr = pendingChain.size() - 1;
       }
-      break;
+      continue;
     }
     curr--;
   }
