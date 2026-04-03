@@ -6,11 +6,12 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:52:34 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/02 05:06:49 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/03 04:31:21 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <ostream>
 #include <vector>
 
 #include "../include/PmergeMe.hpp"
@@ -22,6 +23,8 @@ int main(int argc, const char *argv[]) {
   try {
     pMergeMe::argsValidator(argc, argv);
     std::vector<long> container = pMergeMe::parseArgs(argc, argv);
+
+    std::cout << "Before: " << std::ends;
     pMergeMe::printContainer(container);
 
     std::vector<long> sortedContainer = pMergeMe::mergeInsertSort(container);

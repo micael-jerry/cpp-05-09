@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/02 06:48:30 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/03 06:06:42 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,42 @@ pMergeMe::extractMainAndPendingChain(
   return std::make_pair(mainChain, secondChain);
 }
 
+size_t pMergeMe::getJacobsthalNumber(size_t n) {
+  if (n == 0) {
+    return 0;
+  } else if (n == 1) {
+    return 1;
+  }
+  return getJacobsthalNumber(n - 1) + 2 * getJacobsthalNumber(n - 2);
+}
+
 std::vector<long> pMergeMe::insertPendingElements(
     std::vector<long> mainChain, std::vector<long> pendingChain,
     long struggler) {
-  // TODO: INSERT ORDER USING JACKOBSTHAL
-  for (size_t i = 0; i < pendingChain.size(); i++) {
-    std::vector<long>::iterator it =
-        std::lower_bound(mainChain.begin(), mainChain.end(), pendingChain[i]);
-    mainChain.insert(it, pendingChain[i]);
+  size_t curJacobthalIndex = 3;
+
+  size_t prev = 0;
+  size_t curr = pMergeMe::getJacobsthalNumber(curJacobthalIndex) - 1;
+  if (curr > pendingChain.size()) {
+    curr = pendingChain.size() - 1;
   }
+  // TODO: CONDITION DE NEXT ET D'ARRET
+  while (curr >= prev && prev < pendingChain.size()) {
+    std::vector<long>::iterator it = std::lower_bound(
+        mainChain.begin(), mainChain.end(), pendingChain[curr]);
+    mainChain.insert(it, pendingChain[curr]);
+    if (curr == prev) {
+      curJacobthalIndex++;
+      prev = curr;
+      curr = pMergeMe::getJacobsthalNumber(curJacobthalIndex) - 1;
+      if (curr > pendingChain.size()) {
+        curr = pendingChain.size() - 1;
+      }
+      break;
+    }
+    curr--;
+  }
+
   if (struggler != NO_STRUGGLER) {
     std::vector<long>::iterator it =
         std::lower_bound(mainChain.begin(), mainChain.end(), struggler);
