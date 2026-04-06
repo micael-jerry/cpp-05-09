@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:59:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/06 20:48:15 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/06 21:23:15 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ Container pMergeMe::insertPendingElements(Container mainChain,
   if (curr >= pendingChain.size()) {
     curr = pendingChain.size() - 1;
   }
+//   TODO: lower_bound optimisation (begin to max of current pending element)
   while (prev < pendingChain.size()) {
     typename Container::iterator it = std::lower_bound(
         mainChain.begin(), mainChain.end(), pendingChain[curr]);
