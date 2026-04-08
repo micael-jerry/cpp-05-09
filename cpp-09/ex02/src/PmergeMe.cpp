@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/06 20:06:08 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/08 04:54:21 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void pMergeMe::argsValidator(int ac, const char *av[]) {
   }
 }
 
-
 size_t pMergeMe::getJacobsthalNumber(size_t n) {
   if (n == 0) {
     return 0;
@@ -40,4 +39,3 @@ size_t pMergeMe::getJacobsthalNumber(size_t n) {
   }
   return getJacobsthalNumber(n - 1) + 2 * getJacobsthalNumber(n - 2);
 }
-

@@ -66,8 +66,10 @@ int Span::longestSpan() const {
   if (this->_contents.size() < 2) {
     throw Span::NotEnoughNumbersException();
   }
-  std::vector<int>::const_iterator itMin = std::min_element(this->_contents.begin(), this->_contents.end());
-  std::vector<int>::const_iterator itMax = std::max_element(this->_contents.begin(), this->_contents.end());
+  std::vector<int>::const_iterator itMin =
+      std::min_element(this->_contents.begin(), this->_contents.end());
+  std::vector<int>::const_iterator itMax =
+      std::max_element(this->_contents.begin(), this->_contents.end());
 
   return (*itMax - *itMin);
 }

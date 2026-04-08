@@ -16,7 +16,8 @@
 #include "../include/MutantStack.hpp"
 
 int main(void) {
-  std::cout << "\n========== TEST 1: SUBJECT TEST (MutantStack) ==========" << std::endl;
+  std::cout << "\n========== TEST 1: SUBJECT TEST (MutantStack) =========="
+            << std::endl;
   {
     MutantStack<int> mstack;
     mstack.push(5);
@@ -29,7 +30,7 @@ int main(void) {
     mstack.push(737);
     //[...]
     mstack.push(0);
-    
+
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
     ++it;
@@ -42,8 +43,11 @@ int main(void) {
     std::stack<int> s(mstack);
   }
 
-  std::cout << "\n========== TEST 2: EXPECTED BEHAVIOR WITH std::list ==========" << std::endl;
-  std::cout << "(Should display exactly the same results as TEST 1)" << std::endl;
+  std::cout
+      << "\n========== TEST 2: EXPECTED BEHAVIOR WITH std::list =========="
+      << std::endl;
+  std::cout << "(Should display exactly the same results as TEST 1)"
+            << std::endl;
   {
     std::list<int> mlist;
     mlist.push_back(5);
@@ -56,7 +60,7 @@ int main(void) {
     mlist.push_back(737);
     //[...]
     mlist.push_back(0);
-    
+
     std::list<int>::iterator it = mlist.begin();
     std::list<int>::iterator ite = mlist.end();
     ++it;
@@ -68,54 +72,64 @@ int main(void) {
     }
   }
 
-  std::cout << "\n========== TEST 3: DIFFERENT ITERATORS ==========" << std::endl;
+  std::cout << "\n========== TEST 3: DIFFERENT ITERATORS =========="
+            << std::endl;
   {
     MutantStack<int> mstack;
     for (int i = 1; i <= 5; i++) {
-        mstack.push(i * 10);
+      mstack.push(i * 10);
     }
-    
+
     std::cout << "Normal iterator (bottom to top): ";
-    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) {
-        std::cout << *it << " ";
+    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end();
+         ++it) {
+      std::cout << *it << " ";
     }
     std::cout << std::endl;
 
     std::cout << "Reverse iterator (top to bottom): ";
-    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit) {
-        std::cout << *rit << " ";
+    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+         rit != mstack.rend(); ++rit) {
+      std::cout << *rit << " ";
     }
     std::cout << std::endl;
 
     std::cout << "Const iterator: ";
     const MutantStack<int> const_mstack = mstack;
-    for (MutantStack<int>::const_iterator cit = const_mstack.begin(); cit != const_mstack.end(); ++cit) {
-        std::cout << *cit << " ";
+    for (MutantStack<int>::const_iterator cit = const_mstack.begin();
+         cit != const_mstack.end(); ++cit) {
+      std::cout << *cit << " ";
     }
     std::cout << std::endl;
   }
 
-  std::cout << "\n========== TEST 4: CONST REVERSE ITERATOR ==========" << std::endl;
+  std::cout << "\n========== TEST 4: CONST REVERSE ITERATOR =========="
+            << std::endl;
   {
     MutantStack<int> mstack;
     for (int i = 1; i <= 5; i++) mstack.push(i);
     const MutantStack<int> const_mstack = mstack;
     std::cout << "Const reverse iterator (top to bottom): ";
-    for (MutantStack<int>::const_reverse_iterator crit = const_mstack.rbegin(); crit != const_mstack.rend(); ++crit) {
-        std::cout << *crit << " ";
+    for (MutantStack<int>::const_reverse_iterator crit = const_mstack.rbegin();
+         crit != const_mstack.rend(); ++crit) {
+      std::cout << *crit << " ";
     }
     std::cout << std::endl;
   }
 
-  std::cout << "\n========== TEST 5: STD::STACK METHODS ==========" << std::endl;
+  std::cout << "\n========== TEST 5: STD::STACK METHODS =========="
+            << std::endl;
   {
     MutantStack<int> stackMethods;
-    std::cout << "Is empty initially? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+    std::cout << "Is empty initially? " << (stackMethods.empty() ? "Yes" : "No")
+              << std::endl;
     stackMethods.push(99);
-    std::cout << "Pushed 99. Is empty? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+    std::cout << "Pushed 99. Is empty? "
+              << (stackMethods.empty() ? "Yes" : "No") << std::endl;
     std::cout << "Size: " << stackMethods.size() << std::endl;
     stackMethods.pop();
-    std::cout << "Popped. Is empty? " << (stackMethods.empty() ? "Yes" : "No") << std::endl;
+    std::cout << "Popped. Is empty? " << (stackMethods.empty() ? "Yes" : "No")
+              << std::endl;
   }
   std::cout << std::endl;
 

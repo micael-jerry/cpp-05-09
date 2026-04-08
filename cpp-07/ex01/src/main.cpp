@@ -4,13 +4,17 @@
 #include "../include/iter.hpp"
 
 class Awesome {
-public:
-    Awesome(void) : _n(42) { return; }
-    int get(void) const { return this->_n; }
-private:
-    int _n;
+ public:
+  Awesome(void) : _n(42) { return; }
+  int get(void) const { return this->_n; }
+
+ private:
+  int _n;
 };
-std::ostream & operator<<(std::ostream & o, Awesome const & rhs) { o << rhs.get(); return o; }
+std::ostream &operator<<(std::ostream &o, Awesome const &rhs) {
+  o << rhs.get();
+  return o;
+}
 
 // Non-const integer printing function
 void printInt(int &i) { std::cout << i << " "; }
@@ -37,8 +41,8 @@ void printNonConstTemplate(T &x) {
 }
 
 template <typename T>
-void print(T const & x) {
-    std::cout << x << " ";
+void print(T const &x) {
+  std::cout << x << " ";
 }
 
 int main(void) {
@@ -79,7 +83,7 @@ int main(void) {
   std::cout << std::endl << std::endl;
 
   std::cout << "=== Test 6: Class Objects ===" << std::endl;
-  int tab[] = { 0, 1, 2, 3, 4 };
+  int tab[] = {0, 1, 2, 3, 4};
   Awesome tab2[5];
 
   iter(tab, 5, print<int>);

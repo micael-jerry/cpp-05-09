@@ -102,10 +102,8 @@ void pMergeMe::sortPairs(PairContainer &pairs) {
 
   size_t mid = pairs.size() / 2;
 
-  PairContainer leftPairs(pairs.begin(),
-                        pairs.begin() + mid);
-  PairContainer rightPairs(pairs.begin() + mid,
-                         pairs.end());
+  PairContainer leftPairs(pairs.begin(), pairs.begin() + mid);
+  PairContainer rightPairs(pairs.begin() + mid, pairs.end());
 
   sortPairs<PairContainer>(leftPairs);
   sortPairs<PairContainer>(rightPairs);
@@ -179,7 +177,7 @@ Container pMergeMe::insertPendingElements(Container mainChain,
   if (curr >= pendingChain.size()) {
     curr = pendingChain.size() - 1;
   }
-//   TODO: lower_bound optimisation (begin to max of current pending element)
+  //   TODO: lower_bound optimisation (begin to max of current pending element)
   while (prev < pendingChain.size()) {
     typename Container::iterator it = std::lower_bound(
         mainChain.begin(), mainChain.end(), pendingChain[curr]);
@@ -217,7 +215,8 @@ Container pMergeMe::mergeInsertSort(Container &container) {
     container.pop_back();
   }
 
-  PairContainer pairsContainer = pMergeMe::extractPairs<Container, PairContainer>(container);
+  PairContainer pairsContainer =
+      pMergeMe::extractPairs<Container, PairContainer>(container);
   pMergeMe::sortPairs(pairsContainer);
 
   std::pair<Container, Container> mainAndSecondChain =

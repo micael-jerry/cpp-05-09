@@ -31,12 +31,12 @@ class Span {
   Span &operator=(Span const &span);
 
   void addNumber(int const &number);
-  template<typename Tit>
+  template <typename Tit>
   void addNumber(Tit start, Tit end) {
-  if (this->_contents.size() + std::distance(start, end) > this->_size) {
-    throw Span::OutOfRangeException();
-  }
-  this->_contents.insert(this->_contents.end(), start, end);
+    if (this->_contents.size() + std::distance(start, end) > this->_size) {
+      throw Span::OutOfRangeException();
+    }
+    this->_contents.insert(this->_contents.end(), start, end);
   }
 
   int shortestSpan() const;

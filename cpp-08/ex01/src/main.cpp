@@ -26,8 +26,10 @@ int main() {
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
-    std::cout << "Shortest span: " << sp.shortestSpan() << " (Expected: 2)" << std::endl;
-    std::cout << "Longest span:  " << sp.longestSpan() << " (Expected: 14)" << std::endl;
+    std::cout << "Shortest span: " << sp.shortestSpan() << " (Expected: 2)"
+              << std::endl;
+    std::cout << "Longest span:  " << sp.longestSpan() << " (Expected: 14)"
+              << std::endl;
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
   }
@@ -36,7 +38,7 @@ int main() {
   try {
     std::cout << "[Testing Span(0)]" << std::endl;
     Span emptySpan(0);
-    emptySpan.addNumber(1); // Should throw OutOfRangeException
+    emptySpan.addNumber(1);  // Should throw OutOfRangeException
   } catch (std::exception &e) {
     std::cout << "\033[31mCaught Exception:\033[0m " << e.what() << std::endl;
   }
@@ -45,7 +47,7 @@ int main() {
     std::cout << "\n[Testing shortestSpan with only 1 element]" << std::endl;
     Span oneElementSpan(5);
     oneElementSpan.addNumber(42);
-    oneElementSpan.shortestSpan(); // Should throw NotEnoughNumbersException
+    oneElementSpan.shortestSpan();  // Should throw NotEnoughNumbersException
   } catch (std::exception &e) {
     std::cout << "\033[31mCaught Exception:\033[0m " << e.what() << std::endl;
   }
@@ -55,35 +57,38 @@ int main() {
     Span sp(2);
     sp.addNumber(1);
     sp.addNumber(2);
-    sp.addNumber(3); // Should throw OutOfRangeException
+    sp.addNumber(3);  // Should throw OutOfRangeException
   } catch (std::exception &e) {
     std::cout << "\033[31mCaught Exception:\033[0m " << e.what() << std::endl;
   }
 
-  std::cout << "\n========== TEST 3: ITERATOR RANGE ADDITION ==========" << std::endl;
+  std::cout << "\n========== TEST 3: ITERATOR RANGE ADDITION =========="
+            << std::endl;
   try {
     Span rangeSpan(10);
     std::vector<int> vec;
     for (int i = 0; i < 5; i++) {
-        vec.push_back(i * 10);
+      vec.push_back(i * 10);
     }
-    
+
     std::cout << "Adding 5 numbers from vector to span..." << std::endl;
     rangeSpan.addNumber(vec.begin(), vec.end());
-    
+
     std::cout << "Shortest span: " << rangeSpan.shortestSpan() << std::endl;
     std::cout << "Longest span:  " << rangeSpan.longestSpan() << std::endl;
-    
-    std::cout << "\nTrying to add 10 more numbers (should overflow)..." << std::endl;
+
+    std::cout << "\nTrying to add 10 more numbers (should overflow)..."
+              << std::endl;
     std::vector<int> tooMany;
     for (int i = 0; i < 10; i++) tooMany.push_back(i);
-    rangeSpan.addNumber(tooMany.begin(), tooMany.end()); // should throw
-    
+    rangeSpan.addNumber(tooMany.begin(), tooMany.end());  // should throw
+
   } catch (std::exception &e) {
     std::cout << "\033[31mCaught Exception:\033[0m " << e.what() << std::endl;
   }
 
-  std::cout << "\n========== TEST 4: 20,000 ELEMENTS PERFORMANCE ==========" << std::endl;
+  std::cout << "\n========== TEST 4: 20,000 ELEMENTS PERFORMANCE =========="
+            << std::endl;
   try {
     Span bigSpan = Span(20000);
     std::vector<int> randomNumbers;
@@ -102,18 +107,22 @@ int main() {
     std::cout << "Error: " << e.what() << std::endl;
   }
 
-  std::cout << "\n========== TEST 5: EDGE CASES (NEGATIVES & DUPLICATES) ==========" << std::endl;
+  std::cout
+      << "\n========== TEST 5: EDGE CASES (NEGATIVES & DUPLICATES) =========="
+      << std::endl;
   try {
     Span edgeSpan(5);
     edgeSpan.addNumber(-100);
     edgeSpan.addNumber(-50);
     edgeSpan.addNumber(50);
     edgeSpan.addNumber(100);
-    edgeSpan.addNumber(100); // Duplicate
-    
+    edgeSpan.addNumber(100);  // Duplicate
+
     std::cout << "Span with (-100, -50, 50, 100, 100):" << std::endl;
-    std::cout << "- Shortest: " << edgeSpan.shortestSpan() << " (Expected: 0)" << std::endl;
-    std::cout << "- Longest: " << edgeSpan.longestSpan() << " (Expected: 200)" << std::endl;
+    std::cout << "- Shortest: " << edgeSpan.shortestSpan() << " (Expected: 0)"
+              << std::endl;
+    std::cout << "- Longest: " << edgeSpan.longestSpan() << " (Expected: 200)"
+              << std::endl;
   } catch (std::exception &e) {
     std::cout << "Error: " << e.what() << std::endl;
   }
