@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 06:02:24 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/08 04:54:21 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/12 18:28:00 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@
 #include <cstdlib>
 
 bool pMergeMe::isPositiveNumberStr(const std::string &str) {
-  for (size_t i = 0; i < str.length(); i++) {
+  size_t i = 0;
+
+  if (str.length() >= 2 && str[0] == '+' && std::isdigit(str[1])) {
+    i = 2;
+  }
+
+  while (i < str.length())
+  {
     if (!std::isdigit(str[i])) return false;
+    i++;
   }
   return true;
 }
