@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/27 06:12:17 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:57:36 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 // DATA ERROR
 #define TOO_LOW_VALUE_ERROR_MSG "Too Low Value"
 #define TOO_LARGE_VALUE_ERROR_MSG "Too Large Value"
-#define TOO_LARGE_DATE_ERROR_MSG "Too Large Date"
 #define TOO_LOW_DATE_ERROR_MSG "Too Low Date"
 
 #define DATA_FILE "data/data.csv"

@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:26:57 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/22 08:12:59 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/17 20:44:04 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <string>
 #include <utility>
+#include <iterator>
 
 std::string btcutils::trim(const std::string &str) {
   size_t start = 0;
@@ -133,17 +134,21 @@ std::map<std::time_t, double> btcdata::parseFileDb(const char *filename) {
 
 std::pair<std::time_t, double> btc::getExchangeValueByDate(
     std::map<std::time_t, double> db, std::time_t date) {
-  for (std::map<std::time_t, double>::iterator it = db.begin(); it != db.end();
-       it++) {
-    if (it->first == date) {
-      return *it;
-    } else if ((it->first > date)) {
-      if (it == db.begin()) {
-        throw btc::btcException(TOO_LOW_DATE_ERROR_MSG);
-      }
-      it--;
-      return *it;
-    }
+  std::map<std::time_t, double>::iterator last = db.end();
+  std::advance(last, -1);
+
+  if (date < db.begin()->first) {
+    throw btc::btcException(TOO_LOW_DATE_ERROR_MSG);
   }
-  throw btc::btcException(TOO_LARGE_DATE_ERROR_MSG);
+  if (date > last->first) {
+    return *last;
+  }
+
+  std::map<std::time_t, double>::iterator value = db.lower_bound(date);
+
+  if (value->first != date) {
+    std::advance(value, -1);
+  }
+
+  return *value;
 }
