@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:54:40 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/04/17 18:57:36 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:19:25 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #define NO_SEPARATOR_ERROR_MSG "No Separator Found"
 #define INVALID_DATE_ERROR_MSG "Invalid Date"
 #define INVALID_VALUE_ERROR_MSG "Invalid Value"
+#define INVALID_TITLE_ERROR_MSG "Invalid Title"
+
 // DATA ERROR
 #define TOO_LOW_VALUE_ERROR_MSG "Too Low Value"
 #define TOO_LARGE_VALUE_ERROR_MSG "Too Large Value"
@@ -31,6 +33,7 @@
 #define DATA_FILE "data/data.csv"
 #define DB_KEY_VAL_SEPARATOR ','
 #define INPUT_KEY_VAL_SEPARATOR '|'
+#define INPUT_TITLE "date | value"
 #define BTC_MIN 0
 #define BTC_MAX 1000
 

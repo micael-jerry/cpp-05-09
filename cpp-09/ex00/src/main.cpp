@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 05:14:13 by mfidimal          #+#    #+#             */
-/*   Updated: 2026/03/27 05:58:34 by mfidimal         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:19:52 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,22 @@ void convert(const char *filename, std::map<std::time_t, double> db) {
   }
 
   std::string line;
-  std::getline(file, line);  // INFO: REMOVE HEADERS
-  while (std::getline(file, line)) {
-    try {
-      const std::pair<std::time_t, double> parsedLine =
-          btcdata::parseAndValidateLine(line, INPUT_KEY_VAL_SEPARATOR);
-      view(parsedLine, db);
-    } catch (std::exception &e) {
-      std::cerr << e.what() << std::endl;
+  std::getline(file, line);
+
+  if (line == INPUT_TITLE) {
+    while (std::getline(file, line)) {
+      try {
+        const std::pair<std::time_t, double> parsedLine =
+            btcdata::parseAndValidateLine(line, INPUT_KEY_VAL_SEPARATOR);
+        view(parsedLine, db);
+      } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+      }
     }
+  } else {
+    throw btcdata::parseException(INVALID_TITLE_ERROR_MSG);
   }
+
   file.close();
 }
 
